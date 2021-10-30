@@ -27,12 +27,15 @@
   <div class="mt-6 mb-4">
     <Button @click="login" :action="'success'" :tabIndex="3" class="w-full"> Okay, let me in! </Button>
   </div>
+  <div class="mt-6 mb-4">
+    <Button @click="loginWithGoogle" :action="'success'" :tabIndex="4" class="w-full"> Login with Google! </Button>
+  </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, reactive } from 'vue'
 import { useStore } from '__/store'
-import { LOGIN_ACTION } from '__/store-constants'
+import { LOGIN_ACTION, LOGIN_WITH_GOOGLE_ACTION } from '__/store-constants'
 import { Input, Button } from '__/components'
 
 export default defineComponent({
@@ -51,8 +54,10 @@ export default defineComponent({
     })
     // Define async function for user login with email and password.
     const login = async () => store.dispatch(LOGIN_ACTION, form)
+    // Define async function for user login with Google.
+    const loginWithGoogle = async () => store.dispatch(LOGIN_WITH_GOOGLE_ACTION)
     // Return instances and variables.
-    return { form, login }
+    return { form, login, loginWithGoogle }
   },
 })
 </script>

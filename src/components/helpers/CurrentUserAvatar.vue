@@ -1,6 +1,6 @@
 <template>
   <img
-    :src="user.user_metadata?.picture ? user.user_metadata?.picture : defaultUserImage"
+    :src="user.user_metadata?.avatar_url || defaultUserImage"
     class="w-10 h-10 mx-auto border-2 rounded-full bg-secondary-dark border-secondary-light dark:border-main"
     alt="user picture"
   />

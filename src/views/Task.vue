@@ -25,7 +25,6 @@
 <script lang="ts">
 import { defineComponent, onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { TaskDataService as Task, TaskResponse } from '__/services'
 import { ContentLoader } from '__/components'
 
 export default defineComponent({
@@ -46,27 +45,27 @@ export default defineComponent({
     const isLoading = ref(true)
 
     // Define function for getting task by ID.
-    const getTaskByID = async () => {
-      try {
-        const { data: task_response }: TaskResponse = await Task.getByID(props.id)
-        // Successful response from API server, or failed with warning message.
-        if (task_response.status === 200) {
-          // Get the task data:
-          task.value = task_response.task // add task info
-          steps.value = task_response.task.attrs.steps.sort((a: any, b: any) => a.position - b.position) // add sort for steps
-          // Cancel content loader.
-          isLoading.value = false
-        } else if (task_response.status === 404) {
-          // Failed response from API server.
-          router.replace({ name: 'not-found' }) // 404: replace path to Not Found page
-        } else console.warn(task_response.msg) // or show error message
-      } catch (error: any) {
-        console.error(error)
-      }
-    }
+    // const getTaskByID = async () => {
+    //   try {
+    //     const { data: task_response }: TaskResponse = await Task.getByID(props.id)
+    //     // Successful response from API server, or failed with warning message.
+    //     if (task_response.status === 200) {
+    //       // Get the task data:
+    //       task.value = task_response.task // add task info
+    //       steps.value = task_response.task.attrs.steps.sort((a: any, b: any) => a.position - b.position) // add sort for steps
+    //       // Cancel content loader.
+    //       isLoading.value = false
+    //     } else if (task_response.status === 404) {
+    //       // Failed response from API server.
+    //       router.replace({ name: 'not-found' }) // 404: replace path to Not Found page
+    //     } else console.warn(task_response.msg) // or show error message
+    //   } catch (error: any) {
+    //     console.error(error)
+    //   }
+    // }
 
-    // Define needed lifecycle hooks.
-    onMounted(() => getTaskByID())
+    // // Define needed lifecycle hooks.
+    // onMounted(() => getTaskByID())
 
     // Return instances and lifecycle hooks.
     return { task, steps, isLoading }

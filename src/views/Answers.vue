@@ -29,7 +29,6 @@
 <script lang="ts">
 import { defineComponent, onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { AnswerDataService as Answer, AnswersResponse } from '__/services'
 import { ContentLoader, DateFormatted, AuthorCard } from '__/components'
 
 export default defineComponent({
@@ -51,26 +50,26 @@ export default defineComponent({
     const answers: any = ref([{}])
 
     // Define function for getting answers by task ID.
-    const getAnswerByTaskID = async () => {
-      try {
-        const { data: answers_response }: AnswersResponse = await Answer.getAllByTaskID(props.id)
-        // Successful response from API server, or failed with warning message.
-        if (answers_response.status === 200) {
-          // Get the task data:
-          answers.value = answers_response.answers // add answers info
-          // Cancel content loader.
-          isLoading.value = false
-        } else if (answers_response.status === 404) {
-          // Failed response from API server.
-          router.replace({ name: 'not-found' }) // 404: replace path to Not Found page
-        } else console.warn(answers_response.msg) // or show error message
-      } catch (error: any) {
-        console.error(error)
-      }
-    }
+    // const getAnswerByTaskID = async () => {
+    //   try {
+    //     const { data: answers_response }: AnswersResponse = await Answer.getAllByTaskID(props.id)
+    //     // Successful response from API server, or failed with warning message.
+    //     if (answers_response.status === 200) {
+    //       // Get the task data:
+    //       answers.value = answers_response.answers // add answers info
+    //       // Cancel content loader.
+    //       isLoading.value = false
+    //     } else if (answers_response.status === 404) {
+    //       // Failed response from API server.
+    //       router.replace({ name: 'not-found' }) // 404: replace path to Not Found page
+    //     } else console.warn(answers_response.msg) // or show error message
+    //   } catch (error: any) {
+    //     console.error(error)
+    //   }
+    // }
 
-    // Define needed lifecycle hooks.
-    onMounted(() => getAnswerByTaskID())
+    // // Define needed lifecycle hooks.
+    // onMounted(() => getAnswerByTaskID())
 
     // Return instances and lifecycle hooks.
     return { answers, isLoading }

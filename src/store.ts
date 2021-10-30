@@ -124,6 +124,27 @@ export const store = createStore<State>({
       }
     },
     /**
+     * @name LOGIN_WITH_GOOGLE_ACTION
+     * @description Action for logging in user with Google.
+     * @param commit object with access to commit action
+     */
+    async [store_const.LOGIN_WITH_GOOGLE_ACTION]({ commit }) {
+      try {
+        // Call signIn() method from Supabase.
+        // See: https://supabase.io/docs/guides/auth/auth-google
+        const { error, user } = await supabase.auth.signIn(
+          { provider: 'google' },
+          { redirectTo: import.meta.env.VITE_LOGIN_WITH_PROVIDER_REDIRECT_URL as string },
+        )
+        // If something went wrong, throw error.
+        if (error) throw error
+      } catch (error: any) {
+        // Show toast with error message.
+        if (error.status === 400) useToast().error(`Oops... Wrong email address or password!`)
+        else useToast().error(error.error_description || error.message)
+      }
+    },
+    /**
      * @name LOGOUT_ACTION
      * @description Action for logging out user.
      * @param commit object with access to commit action

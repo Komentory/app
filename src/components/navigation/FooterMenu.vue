@@ -4,7 +4,6 @@
       grid grid-cols-1
       sm:grid-cols-12
       xl:grid-cols-24
-      sm:h-24
       w-full
       text-secondary-dark
       bg-secondary-darker
@@ -16,11 +15,13 @@
         <div class="grid items-center text-center text-sm grid-cols-1 sm:grid-cols-12 gap-4">
           <div class="sm:col-span-2 sm:text-left">&copy; 2020-{{ new Date().getFullYear() }} Komentory.</div>
           <div class="sm:col-span-5 sm:text-left">
-            Project by <a href="https://1wa.co" target="_blank" class="text-secondary-dark">True web artisans</a>.
-            Special thanks to all our
-            <a href="https://github.com/Komentory" target="_blank" class="text-secondary-dark">GitHub</a> contributors
-            and <a href="https://shostak.dev" target="_blank" class="text-secondary-dark">Vic Shóstak</a> for bringing
-            this wonderful open-source project to life.
+            Project originally developed by
+            <a href="https://1wa.co" target="_blank" class="text-secondary-dark">True web artisans</a> team. Special
+            thanks to all our
+            <a href="https://github.com/Komentory" target="_blank" class="text-secondary-dark">GitHub</a> contributors,
+            <a href="https://supabase.io" target="_blank" class="text-secondary-dark">Supabase</a> service and
+            <a href="https://shostak.dev" target="_blank" class="text-secondary-dark">Vic Shóstak</a> for bringing this
+            wonderful open source project to life.
           </div>
           <div class="sm:col-span-4">
             <div class="inline-flex items-center space-x-2">

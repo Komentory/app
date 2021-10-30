@@ -43,7 +43,6 @@
 
 <script lang="ts">
 import { defineComponent, onMounted, ref } from 'vue'
-import { ProjectDataService, ProjectsResponse } from '__/services'
 import { ProjectLoader, AuthorCard, Button, DateFormatted } from '__/components'
 
 export default defineComponent({
@@ -61,24 +60,24 @@ export default defineComponent({
     const isLoading = ref(true)
 
     // Define function for getting all projects.
-    const getAllProjects = async () => {
-      try {
-        const { data: projects_response }: ProjectsResponse = await ProjectDataService.getAll()
-        // Successful response from API server, or failed with warning message.
-        if (projects_response.status === 200) {
-          // Get the project data:
-          projects.value = projects_response.projects // add projects list
-          count.value = projects_response.count // add project count
-          // Cancel content loader.
-          isLoading.value = false
-        } else console.warn(projects_response.msg) // or show error message
-      } catch (error: any) {
-        console.error(error)
-      }
-    }
+    // const getAllProjects = async () => {
+    //   try {
+    //     const { data: projects_response }: ProjectsResponse = await ProjectDataService.getAll()
+    //     // Successful response from API server, or failed with warning message.
+    //     if (projects_response.status === 200) {
+    //       // Get the project data:
+    //       projects.value = projects_response.projects // add projects list
+    //       count.value = projects_response.count // add project count
+    //       // Cancel content loader.
+    //       isLoading.value = false
+    //     } else console.warn(projects_response.msg) // or show error message
+    //   } catch (error: any) {
+    //     console.error(error)
+    //   }
+    // }
 
-    // Define needed lifecycle hooks.
-    onMounted(() => getAllProjects())
+    // // Define needed lifecycle hooks.
+    // onMounted(() => getAllProjects())
 
     // Return instances and lifecycle hooks.
     return { count, projects, isLoading }

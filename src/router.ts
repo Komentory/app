@@ -16,13 +16,6 @@ const routes: Array<RouteRecordRaw> = [
     meta: { requiresAuth: true },
     component: () => import('__/views/Account.vue'),
   },
-  {
-    path: '/account/activate',
-    name: 'account-activate',
-    meta: { requiresAuth: false },
-    props: (route) => ({ code: route.query.code }),
-    component: () => import('__/views/AccountActivate.vue'),
-  },
   // Register routes:
   {
     path: '/register',
@@ -36,6 +29,12 @@ const routes: Array<RouteRecordRaw> = [
     name: 'login',
     meta: { requiresAuth: false },
     component: () => import('__/views/UserLogin.vue'),
+  },
+  {
+    path: '/login/success',
+    name: 'login-success',
+    meta: { requiresAuth: false },
+    component: () => import('__/views/UserLoginSuccess.vue'),
   },
   {
     path: '/logout',

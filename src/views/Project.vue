@@ -58,7 +58,6 @@
 import { defineComponent, onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { ArrowLeftIcon } from '@heroicons/vue/outline'
-import { ProjectDataService as Project, ProjectResponse } from '__/services'
 import { ContentLoader, DateFormatted, AuthorCard, Button } from '__/components'
 
 export default defineComponent({
@@ -84,33 +83,33 @@ export default defineComponent({
     const tasks: any = ref([{}])
 
     // Define function for getting project by ID.
-    const getProjectByID = async () => {
-      try {
-        const { data: project_response }: ProjectResponse = await Project.getByID(props.id)
-        // Successful response from API server, or failed with warning message.
-        if (project_response.status === 200) {
-          // Get the project data:
-          project.value = {
-            created_at: project_response.project.created_at, // add project created at date
-            updated_at: project_response.project.updated_at, // add project updated at date
-            tasks_count: project_response.project.tasks_count, // add project tasks count
-            ...project_response.project.attrs, // add project attributes
-          }
-          author.value = project_response.project.author // add project author
-          tasks.value = project_response.project.tasks // add project tasks
-          // Cancel content loader.
-          isLoading.value = false
-        } else if (project_response.status === 404) {
-          // Failed response from API server.
-          router.replace({ name: 'not-found' }) // 404: replace path to Not Found page
-        } else console.warn(project_response.msg) // or show error message
-      } catch (error: any) {
-        console.error(error)
-      }
-    }
+    // const getProjectByID = async () => {
+    //   try {
+    //     const { data: project_response }: ProjectResponse = await Project.getByID(props.id)
+    //     // Successful response from API server, or failed with warning message.
+    //     if (project_response.status === 200) {
+    //       // Get the project data:
+    //       project.value = {
+    //         created_at: project_response.project.created_at, // add project created at date
+    //         updated_at: project_response.project.updated_at, // add project updated at date
+    //         tasks_count: project_response.project.tasks_count, // add project tasks count
+    //         ...project_response.project.attrs, // add project attributes
+    //       }
+    //       author.value = project_response.project.author // add project author
+    //       tasks.value = project_response.project.tasks // add project tasks
+    //       // Cancel content loader.
+    //       isLoading.value = false
+    //     } else if (project_response.status === 404) {
+    //       // Failed response from API server.
+    //       router.replace({ name: 'not-found' }) // 404: replace path to Not Found page
+    //     } else console.warn(project_response.msg) // or show error message
+    //   } catch (error: any) {
+    //     console.error(error)
+    //   }
+    // }
 
-    // Define needed lifecycle hooks.
-    onMounted(() => getProjectByID())
+    // // Define needed lifecycle hooks.
+    // onMounted(() => getProjectByID())
 
     // Return instances and lifecycle hooks.
     return { project, author, tasks, isLoading }
