@@ -4,6 +4,7 @@ import { useToast } from 'vue-toastification'
 import { User as ISupabaseUser } from '@supabase/supabase-js'
 import { supabase } from '__/supabase'
 import { router } from '__/router'
+import { loginWithProviderRedirectURL } from '__/helpers'
 import * as store_const from '__/store-constants'
 
 /**
@@ -125,7 +126,7 @@ export const store = createStore<State>({
         // See: https://supabase.io/docs/guides/auth/auth-google
         const { error } = await supabase.auth.signIn(
           { provider: 'google' },
-          { redirectTo: import.meta.env.VITE_LOGIN_WITH_PROVIDER_REDIRECT_URL as string },
+          { redirectTo: loginWithProviderRedirectURL },
         )
         // If something went wrong, throw error.
         if (error) throw error
