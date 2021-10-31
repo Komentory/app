@@ -12,6 +12,7 @@
 
 <script lang="ts">
 import { defineComponent, onMounted } from 'vue'
+import { AuthChangeEvent, Session } from '@supabase/supabase-js'
 import { supabase } from '__/supabase'
 import { useStore, State } from '__/store'
 import { USER_MUTATE } from '__/store-constants'
@@ -28,25 +29,22 @@ export default defineComponent({
     const store = useStore()
     // Checking, if Supabase auth token is available in localStorage.
     onMounted(() => {
-      if ('supabase.auth.token' in localStorage) {
-        // Mutate store's state with the user object from Supabase.
-        // See: https://supabase.io/docs/reference/javascript/auth-session
-        store.commit(USER_MUTATE, supabase.auth.user())
-        // Subscribe to user auth updates and mutate store's state if needed.
-        // See: https://supabase.io/docs/reference/javascript/auth-onauthstatechange
-        supabase.auth.onAuthStateChange((event: any, session: any) => {
-          // Switching by events.
-          switch (event) {
-            case 'SIGNED_OUT':
-              // If the signed out event happen, mutate store's state with the empty user object.
-              store.commit(USER_MUTATE, <State['user']>{})
-              break
-            default:
-              // For all other events state just mutate store's state with the user object.
-              store.commit(USER_MUTATE, session.user)
-          }
-        })
-      }
+      // Subscribe to user auth updates and mutate store's state if needed.
+      // See: https://supabase.io/docs/reference/javascript/auth-onauthstatechange
+      supabase.auth.onAuthStateChange((event: AuthChangeEvent, session: Session | null) => {
+        // Switching by events.
+        switch (event) {
+          case 'SIGNED_IN' || 'USER_UPDATED':
+            // Mutate store's state with the user object from Supabase.
+            // See: https://supabase.io/docs/reference/javascript/auth-session
+            if (session) store.commit(USER_MUTATE, session.user)
+            break
+          case 'SIGNED_OUT':
+            // If the signed out event happen, mutate store's state with the empty user object.
+            store.commit(USER_MUTATE, <State['user']>{})
+            break
+        }
+      })
     })
   },
 })

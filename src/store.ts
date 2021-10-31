@@ -1,6 +1,7 @@
 import { InjectionKey } from 'vue'
 import { createStore, useStore as baseUseStore, Store } from 'vuex'
 import { useToast } from 'vue-toastification'
+import { User as ISupabaseUser } from '@supabase/supabase-js'
 import { supabase } from '__/supabase'
 import { router } from '__/router'
 import * as store_const from '__/store-constants'
@@ -10,25 +11,13 @@ import * as store_const from '__/store-constants'
  * @description Define your typings for the store state.
  */
 export interface State {
-  // User from the Supabase.
-  user: {
-    id: string
-    aud: string
-    role: string
-    email: string
-    email_confirmed_at: Date
-    phone: string
-    confirmed_at: Date
-    email_change_confirm_status: 0
-    last_sign_in_at: Date
-    app_metadata: { provider: string }
-    user_metadata: {}
-    created_at: Date
-    updated_at: Date
-  }
+  user: ISupabaseUser // user model from the Supabase
 }
 
-// Define injection key.
+/**
+ * @name key
+ * @description Define injection key for custom store.
+ */
 export const key: InjectionKey<Store<State>> = Symbol()
 
 /**
@@ -40,7 +29,10 @@ export function useStore() {
   return baseUseStore(key)
 }
 
-// Define store.
+/**
+ * @name store
+ * @description Define default store with custom state.
+ */
 export const store = createStore<State>({
   state: {
     /**
@@ -108,7 +100,7 @@ export const store = createStore<State>({
         // If something went wrong, throw error.
         if (error) throw error
         // Show toast with success message.
-        useToast().success(`Hey, friend! Welcome to your account.`)
+        useToast().success(`Hey, friend. Welcome to your account!`)
         // Mutate store's state with the user object.
         commit(store_const.USER_MUTATE, user)
         // Catch saved route in ?redirect= query.
@@ -126,13 +118,12 @@ export const store = createStore<State>({
     /**
      * @name LOGIN_WITH_GOOGLE_ACTION
      * @description Action for logging in user with Google.
-     * @param commit object with access to commit action
      */
-    async [store_const.LOGIN_WITH_GOOGLE_ACTION]({ commit }) {
+    async [store_const.LOGIN_WITH_GOOGLE_ACTION]() {
       try {
         // Call signIn() method from Supabase.
         // See: https://supabase.io/docs/guides/auth/auth-google
-        const { error, user } = await supabase.auth.signIn(
+        const { error } = await supabase.auth.signIn(
           { provider: 'google' },
           { redirectTo: import.meta.env.VITE_LOGIN_WITH_PROVIDER_REDIRECT_URL as string },
         )
@@ -140,7 +131,7 @@ export const store = createStore<State>({
         if (error) throw error
       } catch (error: any) {
         // Show toast with error message.
-        if (error.status === 400) useToast().error(`Oops... Wrong email address or password!`)
+        if (error.status === 400) useToast().error(`Oops... Something went wrong with the Google authentication!`)
         else useToast().error(error.error_description || error.message)
       }
     },
