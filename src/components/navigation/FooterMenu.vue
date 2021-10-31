@@ -37,7 +37,7 @@
           </div>
           <div class="mx-auto">
             <router-link :to="{ name: 'index' }" class="no-border">
-              <LogoKomentoryIcon :iconType="'secondary-transparent'" :width="36" :height="36" />
+              <LogoKomentoryIcon :iconStyle="'color-main bg-transparent'" :width="36" :height="36" />
             </router-link>
           </div>
         </div>
