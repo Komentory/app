@@ -1,11 +1,15 @@
 <template>
   <router-view v-slot="{ Component, route }">
-    <MainMenu v-if="!(route.name === 'login' || route.name === 'logout' || route.name === 'register')" />
+    <MainMenu v-if="!routesWithoutMenu.includes(route.name)" />
     <div class="flex flex-col h-screen">
-      <transition :name="route.meta.transitionName || 'fade'" mode="out-in" class="flex-grow">
+      <transition
+        :name="route.meta.transitionName || 'fade'"
+        :mode="route.meta.transitionMode || 'out-in'"
+        class="flex-grow"
+      >
         <component :is="Component" :key="route.path" />
       </transition>
-      <FooterMenu v-if="!(route.name === 'login' || route.name === 'logout' || route.name === 'register')" />
+      <FooterMenu v-if="!routesWithoutMenu.includes(route.name)" />
     </div>
   </router-view>
 </template>
@@ -27,6 +31,8 @@ export default defineComponent({
   setup: () => {
     // Define needed instances.
     const store = useStore()
+    // Define needed variables.
+    const routesWithoutMenu = ['login', 'login-success', 'logout', 'register', 'not-found']
     // Checking, if Supabase auth token is available in localStorage.
     onMounted(() => {
       // Subscribe to user auth updates and mutate store's state if needed.
@@ -46,6 +52,8 @@ export default defineComponent({
         }
       })
     })
+    // Return instances and variables.
+    return { routesWithoutMenu }
   },
 })
 </script>

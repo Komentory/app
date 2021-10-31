@@ -35,8 +35,11 @@ export default defineComponent({
     Button,
   },
   setup: () => {
+    // Define needed instances.
     const router = useRouter()
+    // Define needed variables.
     const redirect = setInterval(async () => await router.replace({ name: 'account' }), 3000)
+    // Define needed lifecycle hooks.
     onMounted(() => redirect)
     onUnmounted(() => clearInterval(redirect))
   },
