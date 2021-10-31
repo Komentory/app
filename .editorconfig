@@ -8,6 +8,6 @@ max_line_length = 120
 trim_trailing_whitespace = true
 insert_final_newline = true
 
-[{Dockerfile,*.yml,*.yaml,*.json}]
+[{Dockerfile,*.yml,*.yaml}]
 indent_style = tab
 indent_size = 2
