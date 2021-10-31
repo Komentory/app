@@ -23,7 +23,7 @@ export default defineComponent({
   },
   props: {
     date: { type: String, required: true },
-    iconSize: { type: String, required: true },
+    iconSize: { type: String, default: 'h-6 w-6' },
     locale: { type: String, default: 'en' },
     withTime: { type: Boolean, default: false },
   },

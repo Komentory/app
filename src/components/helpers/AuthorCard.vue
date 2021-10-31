@@ -23,7 +23,7 @@ export default defineComponent({
     first_name: { type: String, required: true },
     last_name: { type: String, default: '' },
     picture: { type: String, default: '' },
-    pictureSize: { type: String, required: true },
+    pictureSize: { type: String, default: 'h-8 w-8' },
   },
   setup: () => {
     return { defaultUserImage }

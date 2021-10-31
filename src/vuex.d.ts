@@ -5,9 +5,7 @@ import { Store } from 'vuex'
 declare module '@vue/runtime-core' {
   // Declare your own store states.
   interface State {
-    jwt_access_token: string
-    jwt_expire_timestamp: number
-    current_user: object
+    user: object
   }
 
   // Provide typings for `this.$store`.
