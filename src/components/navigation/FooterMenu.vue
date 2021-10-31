@@ -37,13 +37,7 @@
           </div>
           <div class="mx-auto">
             <router-link :to="{ name: 'index' }" class="no-border">
-              <svg fill="none" height="36" width="36" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-                <rect height="62" width="62" rx="19" stroke="currentColor" stroke-width="2" x="1" y="1" />
-                <path
-                  d="m49.604 52.5858-7.128-11.7-3.312 4.032v7.668h-4.572v-25.2h4.572v11.556l8.964-11.556h5.328l-7.992 9.792 9.144 15.408z"
-                  fill="currentColor"
-                />
-              </svg>
+              <LogoKomentoryIcon :iconType="'secondary-transparent'" :width="36" :height="36" />
             </router-link>
           </div>
         </div>
@@ -54,9 +48,13 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import { LogoKomentoryIcon } from '__/icons'
 
 export default defineComponent({
   name: 'FooterMenu',
+  components: {
+    LogoKomentoryIcon,
+  },
   setup() {
     // Define footer menu items.
     const footerMenu = [

@@ -15,11 +15,11 @@
         <span>Continue with Google</span>
       </Button>
     </div>
-    <div class="my-8">
+    <div class="my-6">
       <div class="flex justify-center items-center relative">
         <span class="h-px dark:bg-secondary absolute inset-x-0"></span>
         <span class="dark:bg-secondary-darker dark:text-secondary text-sm relative px-4">
-          Or login with email & password
+          Or with email & password
         </span>
       </div>
     </div>
