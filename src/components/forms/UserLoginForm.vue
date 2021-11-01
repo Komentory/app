@@ -9,10 +9,19 @@
         @click="loginWithGoogle"
         :action="''"
         :tabIndex="1"
-        class="flex justify-center items-center space-x-2 w-full"
+        class="flex justify-center items-center space-x-2 w-full mt-6 mb-3"
       >
         <LogoGoogleIcon />
         <span>Continue with Google</span>
+      </Button>
+      <Button
+        @click="loginWithFacebook"
+        :action="''"
+        :tabIndex="2"
+        class="flex justify-center items-center space-x-2 w-full mt-3 mb-6"
+      >
+        <LogoFacebookIcon />
+        <span>Continue with Facebook</span>
       </Button>
     </div>
     <div class="my-6">
@@ -30,7 +39,7 @@
         :label="'Email'"
         :inputType="'email'"
         :placeholder="'Your email address'"
-        :tabIndex="2"
+        :tabIndex="3"
         :isRequired="true"
       />
     </div>
@@ -41,7 +50,7 @@
         :label="'Password'"
         :inputType="'password'"
         :placeholder="'Your password'"
-        :tabIndex="3"
+        :tabIndex="4"
         :isRequired="true"
       />
       <p class="text-right text-sm">
@@ -49,7 +58,7 @@
       </p>
     </div>
     <div class="mt-4 mb-6">
-      <Button @click="login" :action="'success'" :tabIndex="4" class="w-full">Let me in!</Button>
+      <Button @click="login" :action="'success'" :tabIndex="5" class="w-full">Let me in!</Button>
     </div>
     <div class="mt-8 text-center text-sm">
       No account? <router-link :to="{ name: 'register' }">Register</router-link> a new one!
@@ -68,9 +77,9 @@
 import { defineComponent, reactive } from 'vue'
 import { mapGetters } from 'vuex'
 import { useStore } from '__/store'
-import { LOGIN_ACTION, LOGIN_WITH_GOOGLE_ACTION } from '__/store-constants'
+import { LOGIN_ACTION, LOGIN_WITH_GOOGLE_ACTION, LOGIN_WITH_FACEBOOK_ACTION } from '__/store-constants'
 import { Input, Button } from '__/components'
-import { LogoGoogleIcon } from '__/icons'
+import { LogoGoogleIcon, LogoFacebookIcon } from '__/icons'
 
 export default defineComponent({
   name: 'UserLoginForm',
@@ -78,6 +87,7 @@ export default defineComponent({
     Input,
     Button,
     LogoGoogleIcon,
+    LogoFacebookIcon,
   },
   computed: {
     ...mapGetters(['isUserLoggedIn']), // getter for checking if user is logged in
@@ -94,8 +104,10 @@ export default defineComponent({
     const login = async () => store.dispatch(LOGIN_ACTION, form)
     // Define async function for user login with Google.
     const loginWithGoogle = async () => store.dispatch(LOGIN_WITH_GOOGLE_ACTION)
+    // Define async function for user login with Facebook.
+    const loginWithFacebook = async () => store.dispatch(LOGIN_WITH_FACEBOOK_ACTION)
     // Return instances and variables.
-    return { form, login, loginWithGoogle }
+    return { form, login, loginWithGoogle, loginWithFacebook }
   },
 })
 </script>

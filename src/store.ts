@@ -137,6 +137,26 @@ export const store = createStore<State>({
       }
     },
     /**
+     * @name LOGIN_WITH_FACEBOOK_ACTION
+     * @description Action for logging in user with Facebook.
+     */
+    async [store_const.LOGIN_WITH_FACEBOOK_ACTION]() {
+      try {
+        // Call signIn() method from Supabase.
+        // See: https://supabase.io/docs/guides/auth/auth-facebook
+        const { error } = await supabase.auth.signIn(
+          { provider: 'facebook' },
+          { redirectTo: loginWithProviderRedirectURL },
+        )
+        // If something went wrong, throw error.
+        if (error) throw error
+      } catch (error: any) {
+        // Show toast with error message.
+        if (error.status === 400) useToast().error(`Oops... Something went wrong with the Facebook authentication!`)
+        else useToast().error(error.error_description || error.message)
+      }
+    },
+    /**
      * @name LOGOUT_ACTION
      * @description Action for logging out user.
      * @param commit object with access to commit action

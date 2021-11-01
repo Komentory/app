@@ -17,6 +17,12 @@ export const LOGIN_ACTION = 'LOGIN_ACTION'
 export const LOGIN_WITH_GOOGLE_ACTION = 'LOGIN_WITH_GOOGLE_ACTION'
 
 /**
+ * @name LOGIN_WITH_FACEBOOK_ACTION
+ * @description Provide a login with Facebook action.
+ */
+export const LOGIN_WITH_FACEBOOK_ACTION = 'LOGIN_WITH_FACEBOOK_ACTION'
+
+/**
  * @name LOGOUT_ACTION
  * @description Provide a logout action.
  */
