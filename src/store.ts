@@ -69,6 +69,10 @@ export const store = createStore<State>({
      */
     async [store_const.REGISTER_ACTION]({ dispatch }, form) {
       try {
+        // Validating form fields.
+        if (form.user_metadata.full_name === '') throw new Error(`Oops... Full name field is required!`)
+        if (form.email === '') throw new Error(`Oops... Email address field is required!`)
+        if (form.password === '') throw new Error(`Oops... Password field is required!`)
         // Call signUp() method from Supabase.
         // See: https://supabase.io/docs/reference/javascript/auth-signup
         const { error } = await supabase.auth.signUp(
@@ -80,7 +84,7 @@ export const store = createStore<State>({
         // Show toast with success message.
         useToast().success(`You've been registered successfully! Redirect to your account.`)
         // Go to LOGIN_ACTION for logging in.
-        await dispatch(store_const.LOGIN_ACTION, form)
+        await dispatch(store_const.LOGIN_WITH_EMAIL_ACTION, form)
       } catch (error: any) {
         // Show toast with error message.
         if (error.status === 400) useToast().error(`Oops... User with this email address already exists!`)
@@ -88,12 +92,12 @@ export const store = createStore<State>({
       }
     },
     /**
-     * @name LOGIN_ACTION
-     * @description Action for logging in user.
+     * @name LOGIN_WITH_EMAIL_ACTION
+     * @description Action for logging user with email and password.
      * @param commit object with access to commit action
      * @param form object with email and password
      */
-    async [store_const.LOGIN_ACTION]({ commit }, form) {
+    async [store_const.LOGIN_WITH_EMAIL_ACTION]({ commit }, form) {
       try {
         // Call signIn() method from Supabase.
         // See: https://supabase.io/docs/reference/javascript/auth-signin
@@ -118,7 +122,7 @@ export const store = createStore<State>({
     },
     /**
      * @name LOGIN_WITH_GOOGLE_ACTION
-     * @description Action for logging in user with Google.
+     * @description Action for logging user with Google account.
      */
     async [store_const.LOGIN_WITH_GOOGLE_ACTION]() {
       try {
@@ -138,7 +142,7 @@ export const store = createStore<State>({
     },
     /**
      * @name LOGIN_WITH_FACEBOOK_ACTION
-     * @description Action for logging in user with Facebook.
+     * @description Action for logging user with Facebook account.
      */
     async [store_const.LOGIN_WITH_FACEBOOK_ACTION]() {
       try {

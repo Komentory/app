@@ -23,7 +23,7 @@
         :label="'Email'"
         :inputType="'email'"
         :placeholder="'Enter your email address'"
-        :helpText="'Only a valid email, we\'ll send a confirmation email to it.'"
+        :helpText="'Only a valid email, e.g. mail@example.com'"
         :tabIndex="2"
         :isRequired="true"
       />
@@ -35,41 +35,39 @@
         :label="'Password'"
         :inputType="'password'"
         :placeholder="'Enter your secret password'"
-        :helpText="'At least 8 characters, letters in different registers, numbers.'"
+        :helpText="'At least 6 characters, letters in different registers, numbers.'"
         :tabIndex="3"
         :isRequired="true"
       />
     </div>
     <div class="my-6">
       <SwitchGroup>
-        <div class="flex items-center">
+        <div class="flex items-center space-x-2">
           <Switch
-            v-model="form.user_metadata.marketing_email_subscription"
-            :class="form.user_metadata.marketing_email_subscription ? 'bg-main' : 'bg-secondary'"
+            v-model="servicePolicyAgreement"
+            :class="servicePolicyAgreement ? 'bg-main' : 'bg-secondary'"
+            class="switch"
             tabindex="4"
-            class="
-              relative
-              inline-flex
-              items-center
-              h-7
-              w-10
-              transition-colors
-              rounded-full
-              focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600
-            "
-            id="marketing_email_subscription"
           >
-            <span
-              :class="form.user_metadata.marketing_email_subscription ? 'translate-x-5' : 'translate-x-1'"
-              class="inline-block w-4 h-4 transition-transform transform bg-white rounded-full"
-            />
+            <span :class="servicePolicyAgreement ? 'translate-x-5' : 'translate-x-1'" />
           </Switch>
-          <SwitchLabel class="ml-2 text-sm">Subscribe to the marketing emails</SwitchLabel>
+          <SwitchLabel class="text-sm">
+            I agree with the
+            <router-link :to="{ name: 'index' }" class="text-secondary">Terms & Conditions</router-link>
+          </SwitchLabel>
         </div>
       </SwitchGroup>
     </div>
     <div class="my-6">
-      <Button @click="register" :action="'success'" :tabIndex="5" class="w-full">And now register me!</Button>
+      <Button
+        @click="register"
+        :action="'success'"
+        :tabIndex="5"
+        :disabled="!servicePolicyAgreement"
+        class="disabled:opacity-50 w-full"
+      >
+        And now register me!
+      </Button>
     </div>
     <div class="mt-8 text-center text-sm">
       Already have an account? <router-link :to="{ name: 'login' }">Login</router-link>!
@@ -85,7 +83,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive } from 'vue'
+import { defineComponent, reactive, ref } from 'vue'
 import { mapGetters } from 'vuex'
 import { useStore } from '__/store'
 import { REGISTER_ACTION } from '__/store-constants'
@@ -108,18 +106,16 @@ export default defineComponent({
     // Define needed instances.
     const store = useStore()
     // Define needed variables.
+    const servicePolicyAgreement = ref(false)
     const form = reactive({
       email: '',
       password: '',
-      user_metadata: {
-        full_name: '',
-        marketing_email_subscription: true,
-      },
+      user_metadata: { full_name: '' },
     })
     // Define async function for register a new user with email and password.
-    const register = async () => store.dispatch(REGISTER_ACTION, form)
+    const register = async () => await store.dispatch(REGISTER_ACTION, form)
     // Return instances and variables.
-    return { form, register }
+    return { servicePolicyAgreement, form, register }
   },
 })
 </script>

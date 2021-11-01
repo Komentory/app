@@ -3,11 +3,9 @@
     <div class="grid items-center justify-center h-screen sm:w-screen">
       <div class="py-6 px-6 sm:py-8 sm:px-8 xl:py-10 mx-auto block-item shadow-lg">
         <div class="w-72">
-          <h1 class="mb-8 text-center">It works!</h1>
+          <h1 class="mb-8 text-center">Yes, it works!</h1>
           <div class="text-center">
-            <p>
-              <strong>Friend</strong>, you're successfully logged in to the Komentory project using your Google Account!
-            </p>
+            <p><strong>Friend</strong>, you're successfully logged in to the Komentory project!</p>
             <p class="text-sm">
               You will be moved to your account in <strong>3</strong> seconds. If not, please click the button below for
               manual redirect.

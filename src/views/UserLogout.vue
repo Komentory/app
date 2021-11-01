@@ -31,7 +31,7 @@ export default defineComponent({
     // Define needed instances.
     const store = useStore()
     // Proceed user logout.
-    onMounted(() => store.dispatch(LOGOUT_ACTION))
+    onMounted(async () => await store.dispatch(LOGOUT_ACTION))
   },
 })
 </script>

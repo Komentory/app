@@ -47,22 +47,41 @@
 }
 
 @layer utilities {
+  /* Gradient color */
   .gradient-color-yellow-main-blue {
     @apply bg-gradient-to-r;
     @apply from-yellow via-main to-blue;
   }
+  /* Make text with gradient color */
   .gradient-text {
     @apply bg-clip-text;
     @apply text-transparent;
   }
+  /* Style for block elements, like project card */
   .block-item {
     @apply rounded-3xl;
     @apply bg-white;
     @apply dark:bg-secondary-darker;
-    @apply dark:border;
-    @apply dark:border-secondary-dark;
+    @apply dark:border dark:border-secondary-dark;
   }
+  /* Clear border for links */
   .no-border {
     @apply border-none;
+  }
+  /* Headless UI Switch */
+  .switch {
+    @apply relative;
+    @apply inline-flex items-center;
+    @apply h-7 w-10;
+    @apply transition-colors;
+    @apply rounded-full;
+    @apply focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600;
+  }
+  .switch span {
+    @apply inline-block;
+    @apply w-4 h-4;
+    @apply transform transition-transform;
+    @apply bg-white;
+    @apply rounded-full;
   }
 }

@@ -58,7 +58,7 @@
       </p>
     </div>
     <div class="mt-4 mb-6">
-      <Button @click="login" :action="'success'" :tabIndex="5" class="w-full">Let me in!</Button>
+      <Button @click="loginWithEmail" :action="'success'" :tabIndex="5" class="w-full">Let me in!</Button>
     </div>
     <div class="mt-8 text-center text-sm">
       No account? <router-link :to="{ name: 'register' }">Register</router-link> a new one!
@@ -68,7 +68,7 @@
     <h1 class="mb-8 text-center">Oh, wait...</h1>
     <div class="text-center"><strong>Friend,</strong> you're already logged in!</div>
     <div class="mt-8">
-      <Button @click="() => $router.replace({ name: 'account' })" :tabIndex="1" class="w-full"> Go to account </Button>
+      <Button @click="() => $router.replace({ name: 'account' })" :tabIndex="1" class="w-full">Go to account</Button>
     </div>
   </div>
 </template>
@@ -77,7 +77,7 @@
 import { defineComponent, reactive } from 'vue'
 import { mapGetters } from 'vuex'
 import { useStore } from '__/store'
-import { LOGIN_ACTION, LOGIN_WITH_GOOGLE_ACTION, LOGIN_WITH_FACEBOOK_ACTION } from '__/store-constants'
+import { LOGIN_WITH_EMAIL_ACTION, LOGIN_WITH_GOOGLE_ACTION, LOGIN_WITH_FACEBOOK_ACTION } from '__/store-constants'
 import { Input, Button } from '__/components'
 import { LogoGoogleIcon, LogoFacebookIcon } from '__/icons'
 
@@ -101,13 +101,13 @@ export default defineComponent({
       password: '',
     })
     // Define async function for user login with email and password.
-    const login = async () => store.dispatch(LOGIN_ACTION, form)
+    const loginWithEmail = async () => await store.dispatch(LOGIN_WITH_EMAIL_ACTION, form)
     // Define async function for user login with Google.
-    const loginWithGoogle = async () => store.dispatch(LOGIN_WITH_GOOGLE_ACTION)
+    const loginWithGoogle = async () => await store.dispatch(LOGIN_WITH_GOOGLE_ACTION)
     // Define async function for user login with Facebook.
-    const loginWithFacebook = async () => store.dispatch(LOGIN_WITH_FACEBOOK_ACTION)
+    const loginWithFacebook = async () => await store.dispatch(LOGIN_WITH_FACEBOOK_ACTION)
     // Return instances and variables.
-    return { form, login, loginWithGoogle, loginWithFacebook }
+    return { form, loginWithEmail, loginWithGoogle, loginWithFacebook }
   },
 })
 </script>

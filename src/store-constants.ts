@@ -5,10 +5,10 @@
 export const REGISTER_ACTION = 'REGISTER_ACTION'
 
 /**
- * @name LOGIN_ACTION
- * @description Provide a login action.
+ * @name LOGIN_WITH_EMAIL_ACTION
+ * @description Provide a login action with email and password.
  */
-export const LOGIN_ACTION = 'LOGIN_ACTION'
+export const LOGIN_WITH_EMAIL_ACTION = 'LOGIN_WITH_EMAIL_ACTION'
 
 /**
  * @name LOGIN_WITH_GOOGLE_ACTION
