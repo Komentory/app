@@ -4,7 +4,7 @@
       <h1 class="gradient-text gradient-color-yellow-main-blue">Greetings!</h1>
       <h2 class="text-base text-gray-400 dark:text-secondary">Sign into your account</h2>
     </div>
-    <div class="my-6">
+    <div class="my-8">
       <Button
         @click="loginWithGoogle"
         :action="''"
