@@ -7,7 +7,6 @@
     <div class="my-8">
       <Button
         @click="loginWithGoogle"
-        :action="''"
         :tabIndex="1"
         class="flex justify-center items-center space-x-2 w-full mt-6 mb-3"
       >
@@ -16,7 +15,6 @@
       </Button>
       <Button
         @click="loginWithFacebook"
-        :action="''"
         :tabIndex="2"
         class="flex justify-center items-center space-x-2 w-full mt-3 mb-6"
       >
@@ -54,10 +52,10 @@
         :isRequired="true"
       />
       <p class="text-right text-sm">
-        <router-link :to="{ name: 'password-reset' }">Forgot your password?</router-link>
+        <router-link :to="{ name: 'reset-password' }">Forgot your password?</router-link>
       </p>
     </div>
-    <div class="mt-4 mb-6">
+    <div class="mt-3 mb-6">
       <Button @click="loginWithEmail" :action="'success'" :tabIndex="5" class="w-full">Let me in!</Button>
     </div>
     <div class="mt-8 text-center text-sm">

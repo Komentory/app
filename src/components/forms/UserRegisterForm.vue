@@ -53,7 +53,7 @@
           </Switch>
           <SwitchLabel class="text-sm">
             I agree with the
-            <router-link :to="{ name: 'index' }" class="text-secondary">Terms & Conditions</router-link>
+            <router-link :to="{ name: 'index' }" class="dark:text-secondary">Terms & Conditions</router-link>
           </SwitchLabel>
         </div>
       </SwitchGroup>
@@ -70,7 +70,7 @@
       </Button>
     </div>
     <div class="mt-8 text-center text-sm">
-      Already have an account? <router-link :to="{ name: 'login' }">Login</router-link>!
+      Already have an account? <router-link :to="{ name: 'login' }">Login</router-link> now!
     </div>
   </div>
   <div class="w-64" v-else>

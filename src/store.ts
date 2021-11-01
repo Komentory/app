@@ -4,7 +4,7 @@ import { useToast } from 'vue-toastification'
 import { User as ISupabaseUser } from '@supabase/supabase-js'
 import { supabase } from '__/supabase'
 import { router } from '__/router'
-import { loginWithProviderRedirectURL } from '__/helpers'
+import { loginWithProviderRedirectURL, resetPasswordRedirectURL } from '__/helpers'
 import * as store_const from '__/store-constants'
 
 /**
@@ -99,6 +99,9 @@ export const store = createStore<State>({
      */
     async [store_const.LOGIN_WITH_EMAIL_ACTION]({ commit }, form) {
       try {
+        // Validating form fields.
+        if (form.email === '') throw new Error(`Oops... Email address field is required!`)
+        if (form.password === '') throw new Error(`Oops... Password field is required!`)
         // Call signIn() method from Supabase.
         // See: https://supabase.io/docs/reference/javascript/auth-signin
         const { error, user } = await supabase.auth.signIn({ email: form.email, password: form.password })
@@ -170,7 +173,7 @@ export const store = createStore<State>({
         // Call signOut() method from Supabase.
         // See: https://supabase.io/docs/reference/javascript/auth-signout
         const { error } = await supabase.auth.signOut()
-        // // If something went wrong, throw error.
+        // If something went wrong, throw error.
         if (error) throw error
         // Show toast with info message.
         useToast().info(`You're out. We'll be waiting for you again!`)
@@ -182,6 +185,29 @@ export const store = createStore<State>({
       } finally {
         // In any case, we mutate store's state with the empty user object.
         commit(store_const.USER_MUTATE, <State['user']>{})
+      }
+    },
+    /**
+     * @name RESET_PASSWORD_ACTION
+     * @description Action for resetting password.
+     * @param form object with email
+     */
+    async [store_const.RESET_PASSWORD_ACTION]({}, form) {
+      try {
+        // Validating form fields.
+        if (form.email === '') throw new Error(`Oops... Email address field is required!`)
+        // Call resetPasswordForEmail() method from Supabase.
+        // See: https://supabase.io/docs/reference/javascript/reset-password-email
+        const { error } = await supabase.auth.api.resetPasswordForEmail(form.email, {
+          redirectTo: resetPasswordRedirectURL,
+        })
+        // If something went wrong, throw error.
+        if (error) throw error
+        // Show toast with info message.
+        useToast().warning(`Please check your email. The magic link was successfully sent!`)
+      } catch (error: any) {
+        // Show toast with error message.
+        useToast().error(error.error_description || error.message)
       }
     },
   },

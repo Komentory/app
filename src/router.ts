@@ -44,10 +44,10 @@ const routes: Array<RouteRecordRaw> = [
   },
   // Password reset routes:
   {
-    path: '/password/reset',
-    name: 'password-reset',
+    path: '/reset-password',
+    name: 'reset-password',
     meta: { requiresAuth: false },
-    component: () => import('__/views/PasswordReset.vue'),
+    component: () => import('__/views/UserResetPassword.vue'),
   },
   // Information routes:
   {

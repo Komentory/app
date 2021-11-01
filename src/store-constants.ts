@@ -29,6 +29,12 @@ export const LOGIN_WITH_FACEBOOK_ACTION = 'LOGIN_WITH_FACEBOOK_ACTION'
 export const LOGOUT_ACTION = 'LOGOUT_ACTION'
 
 /**
+ * @name RESET_PASSWORD_ACTION
+ * @description Provide a reset password action.
+ */
+export const RESET_PASSWORD_ACTION = 'RESET_PASSWORD_ACTION'
+
+/**
  * @name USER_MUTATE
  * @description Provide mutation for a user object.
  */
