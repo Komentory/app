@@ -8,15 +8,16 @@
       <Input
         v-model="form.email"
         :id="'email'"
-        :label="'Email'"
+        :label="'Email you submitted at registration'"
         :inputType="'email'"
-        :placeholder="'Enter email you submitted at registration'"
+        :placeholder="'Enter your email address'"
+        :helpText="'Only a valid email, e.g. mail@example.com'"
         :tabIndex="1"
         :isRequired="true"
       />
     </div>
     <div class="mt-3 mb-6">
-      <Button @click="resetPassword" :action="'warning'" :tabIndex="2" class="w-full">Send magic link!</Button>
+      <Button @click="resetPassword" :action="'warning'" :tabIndex="2" class="w-full">Send magic link to me!</Button>
     </div>
     <div class="mt-8 text-center text-sm">
       <p>Already have an account? <router-link :to="{ name: 'login' }">Login</router-link> now!</p>
