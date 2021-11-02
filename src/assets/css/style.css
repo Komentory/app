@@ -47,10 +47,14 @@
 }
 
 @layer utilities {
-  /* Gradient color */
+  /* Gradient colors */
   .gradient-color-yellow-main-blue {
     @apply bg-gradient-to-r;
     @apply from-yellow via-main to-blue;
+  }
+  .gradient-color-yellow-purple-red {
+    @apply bg-gradient-to-r;
+    @apply from-yellow via-purple-500 to-red;
   }
   /* Make text with gradient color */
   .gradient-text {

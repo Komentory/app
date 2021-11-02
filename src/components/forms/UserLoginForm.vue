@@ -1,7 +1,7 @@
 <template>
   <div class="w-72 sm:w-96" v-if="!isUserLoggedIn">
     <div class="mb-8 text-center">
-      <h1 class="gradient-text gradient-color-yellow-main-blue">Greetings!</h1>
+      <h1 class="mb-1 gradient-text gradient-color-yellow-purple-red">Greetings, friend!</h1>
       <h2 class="text-base text-gray-400 dark:text-secondary">Sign into your account</h2>
     </div>
     <div class="my-8">
