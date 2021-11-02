@@ -1,0 +1,91 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body,
+  h1,
+  h2,
+  h3 {
+    @apply text-secondary-dark;
+    @apply dark:text-secondary;
+  }
+  body {
+    @apply font-normal;
+    @apply bg-secondary;
+    @apply text-secondary-dark;
+    @apply dark:bg-secondary-darker;
+    @apply dark:text-secondary;
+  }
+  h1 {
+    @apply font-semibold;
+    @apply text-3xl;
+  }
+  h2 {
+    @apply text-2xl;
+    @apply mb-2;
+  }
+  h3 {
+    @apply text-xl;
+    @apply mb-2;
+  }
+  hr,
+  p {
+    @apply mt-2;
+    @apply mb-2;
+  }
+  a {
+    @apply text-main;
+    @apply border-b;
+    @apply border-main;
+  }
+  a:hover {
+    @apply text-main;
+    @apply border-b-0;
+    @apply border-transparent;
+  }
+}
+
+@layer utilities {
+  /* Gradient colors */
+  .gradient-color-yellow-main-blue {
+    @apply bg-gradient-to-r;
+    @apply from-yellow via-main to-blue;
+  }
+  .gradient-color-yellow-purple-red {
+    @apply bg-gradient-to-r;
+    @apply from-yellow via-purple-500 to-red;
+  }
+  /* Make text with gradient color */
+  .gradient-text {
+    @apply bg-clip-text;
+    @apply text-transparent;
+  }
+  /* Style for block elements, like project card */
+  .block-item {
+    @apply rounded-3xl;
+    @apply bg-white;
+    @apply dark:bg-secondary-darker;
+    @apply dark:border dark:border-secondary-dark;
+  }
+  /* Clear border for links */
+  .no-border {
+    @apply border-none;
+  }
+  /* Headless UI Switch */
+  .switch {
+    @apply relative;
+    @apply inline-flex items-center;
+    @apply h-7 w-10;
+    @apply transition-colors;
+    @apply rounded-full;
+    @apply focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600;
+  }
+  .switch span {
+    @apply inline-block;
+    @apply w-4 h-4;
+    @apply transform transition-transform;
+    @apply bg-white;
+    @apply rounded-full;
+  }
+}

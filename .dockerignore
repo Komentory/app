@@ -1,0 +1,18 @@
+# Files
+.dockerignore
+.editorconfig
+.gitignore
+.prettierrc
+Dockerfile
+Makefile
+LICENSE
+**/*.md
+**/*_test.*
+
+# Folders
+.git/
+.github/
+.vscode/
+dist/
+build/
+node_modules/
