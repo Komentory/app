@@ -72,6 +72,7 @@ export const store = createStore<State>({
         // Validating form fields.
         if (form.user_metadata.full_name === '') throw new Error(`Oops... Full name field is required!`)
         if (form.email === '') throw new Error(`Oops... Email address field is required!`)
+        if (!/.+@.+\..+/i.test(form.email)) throw new Error(`Oops... Email address is not valid!`)
         if (form.password === '') throw new Error(`Oops... Password field is required!`)
         // Call signUp() method from Supabase.
         // See: https://supabase.io/docs/reference/javascript/auth-signup
@@ -101,6 +102,7 @@ export const store = createStore<State>({
       try {
         // Validating form fields.
         if (form.email === '') throw new Error(`Oops... Email address field is required!`)
+        if (!/.+@.+\..+/i.test(form.email)) throw new Error(`Oops... Email address is not valid!`)
         if (form.password === '') throw new Error(`Oops... Password field is required!`)
         // Call signIn() method from Supabase.
         // See: https://supabase.io/docs/reference/javascript/auth-signin
@@ -196,6 +198,7 @@ export const store = createStore<State>({
       try {
         // Validating form fields.
         if (form.email === '') throw new Error(`Oops... Email address field is required!`)
+        if (!/.+@.+\..+/i.test(form.email)) throw new Error(`Oops... Email address is not valid!`)
         // Call resetPasswordForEmail() method from Supabase.
         // See: https://supabase.io/docs/reference/javascript/reset-password-email
         const { error } = await supabase.auth.api.resetPasswordForEmail(form.email, {
