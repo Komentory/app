@@ -11,6 +11,7 @@
       text.dark,
       hover.dark,
       'px-6 pt-3 pb-2.5 font-medium border-b-4 rounded-lg',
+      'disabled:opacity-50 disabled:cursor-not-allowed',
     ]"
     :tabindex="tabIndex"
   >

@@ -7,13 +7,15 @@
         'px-4 py-3 text-base border-2 rounded-lg h-full w-full',
         'text-secondary-darker placeholder-gray-300',
         'dark:placeholder-gray-500 dark:bg-secondary dark:border-secondary-dark',
-        regExpPattern.test(modelValue) ? '' : 'text-red',
+        'disabled:cursor-not-allowed',
+        regExpPattern?.test(modelValue) ? '' : 'text-red',
       ]"
       :id="id"
       :type="inputType"
       :tabindex="tabIndex"
       :placeholder="placeholder"
       :value="modelValue"
+      :autocomplete="autocomplete"
       :required="isRequired"
       :disabled="isDisabled"
     />
@@ -34,6 +36,7 @@ export default defineComponent({
     helpText: { type: String, default: '' },
     placeholder: { type: String, default: '' },
     modelValue: { type: String, default: '' },
+    autocomplete: { type: String, default: 'on' },
     isRequired: { type: Boolean, default: false },
     isDisabled: { type: Boolean, default: false },
   },

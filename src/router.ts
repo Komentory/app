@@ -1,4 +1,4 @@
-import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
+import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 
 // Create a routes array.
 const routes: Array<RouteRecordRaw> = [
@@ -42,12 +42,18 @@ const routes: Array<RouteRecordRaw> = [
     meta: { requiresAuth: false },
     component: () => import('__/views/UserLogout.vue'),
   },
-  // Password reset routes:
+  // Password reset & renew routes:
   {
     path: '/reset-password',
     name: 'reset-password',
     meta: { requiresAuth: false },
     component: () => import('__/views/UserResetPassword.vue'),
+  },
+  {
+    path: '/renew-password',
+    name: 'renew-password',
+    meta: { requiresAuth: false },
+    component: () => import('__/views/UserRenewPassword.vue'),
   },
   // Information routes:
   {
@@ -112,6 +118,6 @@ const routes: Array<RouteRecordRaw> = [
 
 // Create the router instance.
 export const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHistory(),
   routes,
 })

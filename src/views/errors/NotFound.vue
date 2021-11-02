@@ -5,9 +5,7 @@
         <div class="w-72">
           <h1 class="mb-8 text-center">Oops! 404...</h1>
           <div class="text-center">
-            <p class="my-4">
-              Page <strong>{{ $router.currentRoute.value.path }}</strong> is not found!
-            </p>
+            <p class="my-4">This page is not found!</p>
             <p class="text-sm">
               If you see this error often, email our team at
               <a href="mailto:team@komentory.com?subject=404">team@komentory.com</a>. We'll fix it!

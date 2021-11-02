@@ -14,6 +14,7 @@
         :helpText="''"
         :tabIndex="1"
         :isRequired="true"
+        :autocomplete="'name'"
       />
     </div>
     <div class="my-3">
@@ -26,6 +27,7 @@
         :helpText="'Only a valid email, e.g. mail@example.com'"
         :tabIndex="2"
         :isRequired="true"
+        :autocomplete="'email'"
       />
     </div>
     <div class="mt-3 mb-6">
@@ -38,6 +40,7 @@
         :helpText="'At least 6 characters, letters in different registers, numbers.'"
         :tabIndex="3"
         :isRequired="true"
+        :autocomplete="'new-password'"
       />
     </div>
     <div class="my-6">
@@ -59,13 +62,7 @@
       </SwitchGroup>
     </div>
     <div class="my-6">
-      <Button
-        @click="register"
-        :action="'success'"
-        :tabIndex="5"
-        :disabled="!servicePolicyAgreement"
-        class="disabled:opacity-50 w-full"
-      >
+      <Button @click="register" :action="'success'" :tabIndex="5" :disabled="!servicePolicyAgreement" class="w-full">
         And now register me!
       </Button>
     </div>

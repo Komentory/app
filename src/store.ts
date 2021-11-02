@@ -70,10 +70,10 @@ export const store = createStore<State>({
     async [store_const.REGISTER_ACTION]({ dispatch }, form) {
       try {
         // Validating form fields.
-        if (form.user_metadata.full_name === '') throw new Error(`Oops... Full name field is required!`)
-        if (form.email === '') throw new Error(`Oops... Email address field is required!`)
+        if (form.user_metadata.full_name.length === 0) throw new Error(`Oops... Full name field is required!`)
+        if (form.email.length === 0) throw new Error(`Oops... Email address field is required!`)
         if (!/.+@.+\..+/i.test(form.email)) throw new Error(`Oops... Email address is not valid!`)
-        if (form.password === '') throw new Error(`Oops... Password field is required!`)
+        if (form.password.length === 0) throw new Error(`Oops... Password field is required!`)
         // Call signUp() method from Supabase.
         // See: https://supabase.io/docs/reference/javascript/auth-signup
         const { error } = await supabase.auth.signUp(
@@ -101,9 +101,9 @@ export const store = createStore<State>({
     async [store_const.LOGIN_WITH_EMAIL_ACTION]({ commit }, form) {
       try {
         // Validating form fields.
-        if (form.email === '') throw new Error(`Oops... Email address field is required!`)
+        if (form.email.length === 0) throw new Error(`Oops... Email address field is required!`)
         if (!/.+@.+\..+/i.test(form.email)) throw new Error(`Oops... Email address is not valid!`)
-        if (form.password === '') throw new Error(`Oops... Password field is required!`)
+        if (form.password.length === 0) throw new Error(`Oops... Password field is required!`)
         // Call signIn() method from Supabase.
         // See: https://supabase.io/docs/reference/javascript/auth-signin
         const { error, user } = await supabase.auth.signIn({ email: form.email, password: form.password })
@@ -135,7 +135,7 @@ export const store = createStore<State>({
         // See: https://supabase.io/docs/guides/auth/auth-google
         const { error } = await supabase.auth.signIn(
           { provider: 'google' },
-          { redirectTo: loginWithProviderRedirectURL },
+          { redirectTo: loginWithProviderRedirectURL as string },
         )
         // If something went wrong, throw error.
         if (error) throw error
@@ -155,7 +155,7 @@ export const store = createStore<State>({
         // See: https://supabase.io/docs/guides/auth/auth-facebook
         const { error } = await supabase.auth.signIn(
           { provider: 'facebook' },
-          { redirectTo: loginWithProviderRedirectURL },
+          { redirectTo: loginWithProviderRedirectURL as string },
         )
         // If something went wrong, throw error.
         if (error) throw error
@@ -197,17 +197,42 @@ export const store = createStore<State>({
     async [store_const.RESET_PASSWORD_ACTION]({}, form) {
       try {
         // Validating form fields.
-        if (form.email === '') throw new Error(`Oops... Email address field is required!`)
+        if (form.email.length === 0) throw new Error(`Oops... Email address field is required!`)
         if (!/.+@.+\..+/i.test(form.email)) throw new Error(`Oops... Email address is not valid!`)
         // Call resetPasswordForEmail() method from Supabase.
         // See: https://supabase.io/docs/reference/javascript/reset-password-email
         const { error } = await supabase.auth.api.resetPasswordForEmail(form.email, {
-          redirectTo: resetPasswordRedirectURL,
+          redirectTo: resetPasswordRedirectURL as string,
         })
         // If something went wrong, throw error.
         if (error) throw error
         // Show toast with info message.
         useToast().warning(`Please check your email. The magic link was successfully sent!`)
+      } catch (error: any) {
+        // Show toast with error message.
+        useToast().error(error.error_description || error.message)
+      }
+    },
+    /**
+     * @name RENEW_PASSWORD_ACTION
+     * @description Action for resetting password.
+     * @param form object with access_token, new_password and new_password_again
+     */
+    async [store_const.RENEW_PASSWORD_ACTION]({}, form) {
+      try {
+        // Validating form fields.
+        if (form.access_token.length === 0) throw new Error(`Oops... Access token from the magic link is not valid!`)
+        if (form.new_password.length === 0) throw new Error(`Oops... New password field is required!`)
+        if (form.new_password_again.length === 0) throw new Error(`Oops... Re-type new password field is required!`)
+        // Call updateUser() method from Supabase.
+        // See: https://supabase.io/docs/reference/javascript/reset-password-email#notes
+        const { error } = await supabase.auth.api.updateUser(form.access_token, { password: form.new_password })
+        // If something went wrong, throw error.
+        if (error) throw error
+        // Show toast with info message.
+        useToast().success(`Okay. Your password was updated successfully!`)
+        // Push login page.
+        await router.push({ name: 'account' })
       } catch (error: any) {
         // Show toast with error message.
         useToast().error(error.error_description || error.message)

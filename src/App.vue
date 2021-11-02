@@ -32,7 +32,15 @@ export default defineComponent({
     // Define needed instances.
     const store = useStore()
     // Define needed variables.
-    const routesWithoutMenu = ['login', 'login-success', 'logout', 'register', 'reset-password', 'not-found']
+    const routesWithoutMenu = [
+      'login',
+      'login-success',
+      'logout',
+      'register',
+      'reset-password',
+      'renew-password',
+      'not-found',
+    ]
     // Checking, if Supabase auth token is available in localStorage.
     onMounted(() => {
       // Subscribe to user auth updates and mutate store's state if needed.

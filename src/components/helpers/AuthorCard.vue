@@ -1,7 +1,7 @@
 <template>
   <div class="inline-flex items-center space-x-2">
     <img
-      :src="picture ? picture : defaultUserImage"
+      :src="picture ? picture : String(defaultUserImage)"
       :class="pictureSize"
       class="border-2 bg-main border-secondary rounded-full"
       alt="user picture"

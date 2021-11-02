@@ -39,6 +39,7 @@
         :placeholder="'Your email address'"
         :tabIndex="3"
         :isRequired="true"
+        :autocomplete="'email'"
       />
     </div>
     <div class="mt-3 mb-6">
@@ -50,6 +51,7 @@
         :placeholder="'Your password'"
         :tabIndex="4"
         :isRequired="true"
+        :autocomplete="'current-password'"
       />
       <p class="text-right text-sm">
         <router-link :to="{ name: 'reset-password' }">Forgot your password?</router-link>

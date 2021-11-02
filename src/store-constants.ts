@@ -35,6 +35,12 @@ export const LOGOUT_ACTION = 'LOGOUT_ACTION'
 export const RESET_PASSWORD_ACTION = 'RESET_PASSWORD_ACTION'
 
 /**
+ * @name RENEW_PASSWORD_ACTION
+ * @description Provide a renew password action.
+ */
+export const RENEW_PASSWORD_ACTION = 'RENEW_PASSWORD_ACTION'
+
+/**
  * @name USER_MUTATE
  * @description Provide mutation for a user object.
  */
