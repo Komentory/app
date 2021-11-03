@@ -1,13 +1,13 @@
 <template>
   <div class="inline-flex items-center space-x-2">
     <img
-      :src="picture ? picture : String(defaultUserImage)"
+      :src="avatar_url ? avatar_url : String(defaultUserImage)"
       :class="pictureSize"
       class="border-2 bg-main border-secondary rounded-full"
       alt="user picture"
     />
     <div>
-      <router-link :to="{ name: 'user-details', params: { id } }">{{ first_name }} {{ last_name }}</router-link>
+      <router-link :to="{ name: 'user-details', params: { id } }">{{ full_name }}</router-link>
     </div>
   </div>
 </template>
@@ -20,9 +20,8 @@ export default defineComponent({
   name: 'AuthorCard',
   props: {
     id: { type: String, required: true },
-    first_name: { type: String, required: true },
-    last_name: { type: String, default: '' },
-    picture: { type: String, default: '' },
+    full_name: { type: String, required: true },
+    avatar_url: { type: String, default: '' },
     pictureSize: { type: String, default: 'h-8 w-8' },
   },
   setup: () => {

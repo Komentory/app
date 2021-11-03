@@ -120,6 +120,46 @@ export interface paths {
       };
     };
   };
+  "/project_with_author_and_tasks": {
+    get: {
+      parameters: {
+        query: {
+          id?: parameters["rowFilter.project_with_author_and_tasks.id"];
+          created_at?: parameters["rowFilter.project_with_author_and_tasks.created_at"];
+          updated_at?: parameters["rowFilter.project_with_author_and_tasks.updated_at"];
+          status?: parameters["rowFilter.project_with_author_and_tasks.status"];
+          attributes?: parameters["rowFilter.project_with_author_and_tasks.attributes"];
+          author?: parameters["rowFilter.project_with_author_and_tasks.author"];
+          tasks_count?: parameters["rowFilter.project_with_author_and_tasks.tasks_count"];
+          tasks?: parameters["rowFilter.project_with_author_and_tasks.tasks"];
+          /** Filtering Columns */
+          select?: parameters["select"];
+          /** Ordering */
+          order?: parameters["order"];
+          /** Limiting and Pagination */
+          offset?: parameters["offset"];
+          /** Limiting and Pagination */
+          limit?: parameters["limit"];
+        };
+        header: {
+          /** Limiting and Pagination */
+          Range?: parameters["range"];
+          /** Limiting and Pagination */
+          "Range-Unit"?: parameters["rangeUnit"];
+          /** Preference */
+          Prefer?: parameters["preferCount"];
+        };
+      };
+      responses: {
+        /** OK */
+        200: {
+          schema: definitions["project_with_author_and_tasks"][];
+        };
+        /** Partial Content */
+        206: unknown;
+      };
+    };
+  };
   "/projects": {
     get: {
       parameters: {
@@ -219,6 +259,43 @@ export interface paths {
       responses: {
         /** No Content */
         204: never;
+      };
+    };
+  };
+  "/projects_with_author_and_tasks_count": {
+    get: {
+      parameters: {
+        query: {
+          id?: parameters["rowFilter.projects_with_author_and_tasks_count.id"];
+          created_at?: parameters["rowFilter.projects_with_author_and_tasks_count.created_at"];
+          attributes?: parameters["rowFilter.projects_with_author_and_tasks_count.attributes"];
+          author?: parameters["rowFilter.projects_with_author_and_tasks_count.author"];
+          tasks_count?: parameters["rowFilter.projects_with_author_and_tasks_count.tasks_count"];
+          /** Filtering Columns */
+          select?: parameters["select"];
+          /** Ordering */
+          order?: parameters["order"];
+          /** Limiting and Pagination */
+          offset?: parameters["offset"];
+          /** Limiting and Pagination */
+          limit?: parameters["limit"];
+        };
+        header: {
+          /** Limiting and Pagination */
+          Range?: parameters["range"];
+          /** Limiting and Pagination */
+          "Range-Unit"?: parameters["rangeUnit"];
+          /** Preference */
+          Prefer?: parameters["preferCount"];
+        };
+      };
+      responses: {
+        /** OK */
+        200: {
+          schema: definitions["projects_with_author_and_tasks_count"][];
+        };
+        /** Partial Content */
+        206: unknown;
       };
     };
   };
@@ -353,6 +430,20 @@ export interface definitions {
     status: number;
     attributes?: string;
   };
+  project_with_author_and_tasks: {
+    /**
+     * Note:
+     * This is a Primary Key.<pk/>
+     */
+    id?: string;
+    created_at?: string;
+    updated_at?: string;
+    status?: number;
+    attributes?: string;
+    author?: string;
+    tasks_count?: number;
+    tasks?: string;
+  };
   /** Projects created by users. */
   projects: {
     /**
@@ -365,6 +456,17 @@ export interface definitions {
     user_id: string;
     status: number;
     attributes?: string;
+  };
+  projects_with_author_and_tasks_count: {
+    /**
+     * Note:
+     * This is a Primary Key.<pk/>
+     */
+    id?: string;
+    created_at?: string;
+    attributes?: string;
+    author?: string;
+    tasks_count?: number;
   };
   /** Tasks for the project. */
   tasks: {
@@ -417,6 +519,16 @@ export interface parameters {
   "rowFilter.answers.task_id": string;
   "rowFilter.answers.status": string;
   "rowFilter.answers.attributes": string;
+  /** project_with_author_and_tasks */
+  "body.project_with_author_and_tasks": definitions["project_with_author_and_tasks"];
+  "rowFilter.project_with_author_and_tasks.id": string;
+  "rowFilter.project_with_author_and_tasks.created_at": string;
+  "rowFilter.project_with_author_and_tasks.updated_at": string;
+  "rowFilter.project_with_author_and_tasks.status": string;
+  "rowFilter.project_with_author_and_tasks.attributes": string;
+  "rowFilter.project_with_author_and_tasks.author": string;
+  "rowFilter.project_with_author_and_tasks.tasks_count": string;
+  "rowFilter.project_with_author_and_tasks.tasks": string;
   /** projects */
   "body.projects": definitions["projects"];
   "rowFilter.projects.id": string;
@@ -425,6 +537,13 @@ export interface parameters {
   "rowFilter.projects.user_id": string;
   "rowFilter.projects.status": string;
   "rowFilter.projects.attributes": string;
+  /** projects_with_author_and_tasks_count */
+  "body.projects_with_author_and_tasks_count": definitions["projects_with_author_and_tasks_count"];
+  "rowFilter.projects_with_author_and_tasks_count.id": string;
+  "rowFilter.projects_with_author_and_tasks_count.created_at": string;
+  "rowFilter.projects_with_author_and_tasks_count.attributes": string;
+  "rowFilter.projects_with_author_and_tasks_count.author": string;
+  "rowFilter.projects_with_author_and_tasks_count.tasks_count": string;
   /** tasks */
   "body.tasks": definitions["tasks"];
   "rowFilter.tasks.id": string;
