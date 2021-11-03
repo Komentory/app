@@ -48,6 +48,9 @@ export default defineComponent({
       case 'email':
         regExpPattern.value = /.+@.+\..+/i // email address, like mail@example.com
         break
+      case 'password':
+        regExpPattern.value = /.{6,}/i // password, min 6 characters
+        break
       default:
         regExpPattern.value = /.+/i // any characters or numbers
     }
