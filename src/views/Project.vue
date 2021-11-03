@@ -1,14 +1,15 @@
 <template>
   <div class="grid grid-cols-1 sm:grid-cols-12 xl:grid-cols-24">
     <div class="sm:col-span-12 xl:col-start-7">
-      <div class="mt-20 py-4 px-2 sm:mt-24 sm:py-6 sm:px-6">
+      <div class="mt-16 py-4 px-2 sm:mt-24 sm:py-6 sm:px-6">
         <div v-if="isLoading">
           <ContentLoader />
         </div>
         <div v-else>
-          <div class="my-6 sm:inline-flex sm:items-center sm:space-x-4">
-            <router-link :to="{ name: 'projects' }" class="no-border">
-              <ArrowLeftIcon class="h-7 w-7 mb-4 sm:mb-0" />
+          <div class="my-8 sm:inline-flex sm:items-center sm:space-x-4">
+            <router-link :to="{ name: 'projects' }" class="mb-6 sm:mb-0 inline-flex items-center space-x-2 no-border">
+              <ArrowLeftIcon class="h-7 w-7" />
+              <span class="text-lg sm:hidden">Back</span>
             </router-link>
             <h1 :title="project.attributes.title">{{ project.attributes.title }}</h1>
           </div>
@@ -28,8 +29,9 @@
           </div>
           <div class="my-6">
             <h2>Tasks ({{ project.tasks_count }})</h2>
-            <div class="my-4 grid grid-cols-1 sm:grid-cols-3 xl:grid-cols-4 gap-4">
-              <div v-for="(task, index) in project.tasks" :key="task.id" class="block-item shadow-md">
+            <div class="my-4 grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
+              <div v-if="project.tasks.length === 0">No tasks for this project... yet.</div>
+              <div v-else v-for="(task, index) in project.tasks" :key="task.id" class="block-item shadow-md">
                 <div class="py-6 px-6">
                   <h3>Task #{{ index + 1 }}</h3>
                   <p class="font-bold">{{ task.attributes.title }}</p>
@@ -55,6 +57,7 @@
 
 <script lang="ts">
 import { defineComponent, onMounted, ref } from 'vue'
+import { useToast } from 'vue-toastification'
 import { ArrowLeftIcon } from '@heroicons/vue/outline'
 import { ContentLoader, DateFormatted, AuthorCard, Button } from '__/components'
 import { supabase } from '__/supabase'
@@ -73,29 +76,35 @@ export default defineComponent({
     Button,
   },
   setup: (props) => {
+    // Define needed instances.
+    const toast = useToast()
     // Define needed variables.
     const project: any = ref<definitions['project_with_author_and_tasks']>()
     const isLoading = ref(true)
     // Define async function for getting one project by ID.
     const getProject = async () => {
       try {
+        // Send request to Supabase.
         const { data, error } = await supabase
           .from<definitions['project_with_author_and_tasks']>('project_with_author_and_tasks')
           .select()
           .eq('id', props.id)
           .single()
-        // If something went wrong, throw error.
+        // Throw error, if something went wrong.
         if (error) throw error
-        // Successful response from Supabase.
-        project.value = data // add project
-        isLoading.value = false // cancel content loading
+        // Update project object, if get successful response.
+        project.value = data
       } catch (error: any) {
-        console.error(error)
+        // Show error message in toast.
+        toast.error(error.error_description || error.message)
+      } finally {
+        // Cancel content loading.
+        isLoading.value = false
       }
     }
     // Define needed lifecycle hooks.
     onMounted(() => getProject())
-    // Return instances and lifecycle hooks.
+    // Return instances and variables.
     return { project, isLoading }
   },
 })

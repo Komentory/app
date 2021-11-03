@@ -268,6 +268,7 @@ export interface paths {
         query: {
           id?: parameters["rowFilter.projects_with_author_and_tasks_count.id"];
           created_at?: parameters["rowFilter.projects_with_author_and_tasks_count.created_at"];
+          status?: parameters["rowFilter.projects_with_author_and_tasks_count.status"];
           attributes?: parameters["rowFilter.projects_with_author_and_tasks_count.attributes"];
           author?: parameters["rowFilter.projects_with_author_and_tasks_count.author"];
           tasks_count?: parameters["rowFilter.projects_with_author_and_tasks_count.tasks_count"];
@@ -464,6 +465,7 @@ export interface definitions {
      */
     id?: string;
     created_at?: string;
+    status?: number;
     attributes?: string;
     author?: string;
     tasks_count?: number;
@@ -541,6 +543,7 @@ export interface parameters {
   "body.projects_with_author_and_tasks_count": definitions["projects_with_author_and_tasks_count"];
   "rowFilter.projects_with_author_and_tasks_count.id": string;
   "rowFilter.projects_with_author_and_tasks_count.created_at": string;
+  "rowFilter.projects_with_author_and_tasks_count.status": string;
   "rowFilter.projects_with_author_and_tasks_count.attributes": string;
   "rowFilter.projects_with_author_and_tasks_count.author": string;
   "rowFilter.projects_with_author_and_tasks_count.tasks_count": string;
