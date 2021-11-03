@@ -1,6 +1,6 @@
 <template>
   <div class="grid grid-cols-1 sm:grid-cols-12 xl:grid-cols-24">
-    <div class="sm:col-span-12 xl:col-start-7 mt-24">
+    <div class="mt-20 sm:mt-24 sm:col-span-12 xl:col-start-7">
       <div class="py-4 px-2 sm:py-6 sm:px-6">
         <h1 class="line-clamp-1 text-4xl">Projects</h1>
       </div>

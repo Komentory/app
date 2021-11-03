@@ -1,7 +1,7 @@
 <template>
   <div class="grid grid-cols-1 sm:grid-cols-12 xl:grid-cols-24">
     <div class="sm:col-span-12 xl:col-start-7">
-      <div class="mt-16 py-4 px-2 sm:mt-24 sm:py-6 sm:px-6">
+      <div class="mt-16 sm:mt-20 py-4 px-2 sm:py-6 sm:px-6">
         <div v-if="isLoading">
           <ContentLoader />
         </div>
