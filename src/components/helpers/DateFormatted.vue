@@ -34,7 +34,7 @@ export default defineComponent({
     // Formatted date.
     const dateFormatted = date.toLocaleDateString(props.locale, {
       year: 'numeric',
-      month: 'long',
+      month: 'short',
       day: 'numeric',
     })
 

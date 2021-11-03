@@ -1,63 +1,27 @@
 <template>
-  <svg
-    role="img"
-    width="340"
-    height="84"
-    aria-labelledby="loading-aria"
-    viewBox="0 0 340 84"
-    preserveAspectRatio="none"
-  >
-    <title id="loading-aria">Loading...</title>
-    <rect
-      x="0"
-      y="0"
-      width="100%"
-      height="100%"
-      clip-path="url(#clip-path)"
-      style="fill: url('#fill')"
-    ></rect>
-    <defs>
-      <clipPath id="clip-path">
-        <rect x="0" y="0" rx="3" ry="3" width="67" height="11" />
-        <rect x="76" y="0" rx="3" ry="3" width="140" height="11" />
-        <rect x="127" y="48" rx="3" ry="3" width="53" height="11" />
-        <rect x="187" y="48" rx="3" ry="3" width="72" height="11" />
-        <rect x="18" y="48" rx="3" ry="3" width="100" height="11" />
-        <rect x="0" y="71" rx="3" ry="3" width="37" height="11" />
-        <rect x="18" y="23" rx="3" ry="3" width="140" height="11" />
-        <rect x="166" y="23" rx="3" ry="3" width="173" height="11" />
-      </clipPath>
-      <linearGradient id="fill">
-        <stop offset="0.599964" stop-color="#80D5AA" stop-opacity="1">
-          <animate
-            attributeName="offset"
-            values="-2; -2; 1"
-            keyTimes="0; 0.25; 1"
-            dur="1s"
-            repeatCount="indefinite"
-          ></animate>
-        </stop>
-        <stop offset="1.59996" stop-color="#F6F4EF" stop-opacity="1">
-          <animate
-            attributeName="offset"
-            values="-1; -1; 2"
-            keyTimes="0; 0.25; 1"
-            dur="1s"
-            repeatCount="indefinite"
-          ></animate>
-        </stop>
-        <stop offset="2.59996" stop-color="#80D5AA" stop-opacity="1">
-          <animate
-            attributeName="offset"
-            values="0; 0; 3"
-            keyTimes="0; 0.25; 1"
-            dur="1s"
-            repeatCount="indefinite"
-          ></animate>
-        </stop>
-      </linearGradient>
-    </defs>
-  </svg>
+  <div class="animate-pulse">
+    <div class="py-4">
+      <div class="h-3 my-4 gradient-color-yellow-purple-red rounded-full w-1/6"></div>
+      <div class="my-8 h-4 gradient-color-yellow-purple-red rounded-full w-4/5"></div>
+      <div class="flex items-center space-x-2">
+        <div class="h-8 w-8 gradient-color-yellow-purple-red rounded-full"></div>
+        <div class="h-3 gradient-color-yellow-purple-red rounded-full w-1/12"></div>
+        <div class="h-3 gradient-color-yellow-purple-red rounded-full w-1/6"></div>
+      </div>
+      <div class="my-6">
+        <div class="my-4">
+          <div class="h-3 my-2 gradient-color-yellow-purple-red rounded-full w-4/6"></div>
+          <div class="h-3 my-2 gradient-color-yellow-purple-red rounded-full w-3/6"></div>
+          <div class="h-3 my-2 gradient-color-yellow-purple-red rounded-full w-2/6"></div>
+        </div>
+      </div>
+      <div class="my-4">
+        <div class="h-3 my-2 gradient-color-yellow-purple-red rounded-full w-5/6"></div>
+        <div class="h-3 my-2 gradient-color-yellow-purple-red rounded-full w-4/6"></div>
+        <div class="h-3 my-2 gradient-color-yellow-purple-red rounded-full w-2/6"></div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script lang="ts">

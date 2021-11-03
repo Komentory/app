@@ -3,7 +3,8 @@
   "version": "0.5.0",
   "scripts": {
     "start": "vite --port 3000 --host",
-    "build": "vue-tsc --noEmit && vite build",
+    "build": "npm run check:typescript && vite build",
+    "check:typescript": "vue-tsc --noEmit",
     "update": "npm update && npm install && npm outdated",
     "update-types": "source .env && npx openapi-typescript $VITE_SUPABASE_URL/rest/v1/?apikey=$VITE_SUPABASE_ANON_KEY --output ./src/types/supabase.ts",
     "serve": "npm run build && vite preview --port 3000 --host"
