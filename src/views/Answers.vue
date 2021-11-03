@@ -11,9 +11,8 @@
       <div v-for="answer in answers" :key="answer.id" class="py-2 px-3 border rounded">
         <AuthorCard
           :id="answer.author.user_id"
-          :first_name="answer.author.first_name"
-          :last_name="answer.author.last_name"
-          :picture="answer.author.picture"
+          :full_name="answer.author.full_name"
+          :avatar_url="answer.author.avatar_url"
         />
         <div class="mt-2 mb-4 truncate">
           <router-link :to="{ name: 'answer-details', params: { id: answer.id } }">
