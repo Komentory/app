@@ -13,6 +13,7 @@ import * as store_const from '__/store-constants'
  */
 export interface State {
   user: ISupabaseUser // user model from the Supabase
+  loading: boolean // loading state
 }
 
 /**
@@ -41,6 +42,11 @@ export const store = createStore<State>({
      * @description the user state.
      */
     user: <State['user']>{},
+    /**
+     * @name loading
+     * @description the loading state.
+     */
+    loading: false,
   },
   getters: {
     /**
@@ -50,6 +56,13 @@ export const store = createStore<State>({
     isUserLoggedIn(state) {
       return state.user.id !== undefined // return true, if user is logged out
     },
+    /**
+     * @name isLoading
+     * @description getter for checking loading state.
+     */
+    isLoading(state) {
+      return state.loading
+    },
   },
   mutations: {
     /**
@@ -58,6 +71,13 @@ export const store = createStore<State>({
      */
     [store_const.USER_MUTATE](state, user) {
       state.user = user
+    },
+    /**
+     * @name LOADING_MUTATE
+     * @description mutate loading state in store.
+     */
+    [store_const.LOADING_MUTATE](state) {
+      state.loading = !state.loading
     },
   },
   actions: {
@@ -100,6 +120,8 @@ export const store = createStore<State>({
      */
     async [store_const.LOGIN_WITH_EMAIL_ACTION]({ commit }, form) {
       try {
+        // Start loading.
+        commit(store_const.LOADING_MUTATE)
         // Validating form fields.
         if (form.email.length === 0) throw new Error(`Oops... Email address field is required!`)
         if (!/.+@.+\..+/i.test(form.email)) throw new Error(`Oops... Email address is not valid!`)
@@ -123,6 +145,9 @@ export const store = createStore<State>({
         // Show toast with error message.
         if (error.status === 400) useToast().error(`Oops... Wrong email address or password!`)
         else useToast().error(error.error_description || error.message)
+      } finally {
+        // Stop loading.
+        commit(store_const.LOADING_MUTATE)
       }
     },
     /**
@@ -194,8 +219,10 @@ export const store = createStore<State>({
      * @description Action for resetting password.
      * @param form object with email
      */
-    async [store_const.RESET_PASSWORD_ACTION]({}, form) {
+    async [store_const.RESET_PASSWORD_ACTION]({ commit }, form) {
       try {
+        // Start loading.
+        commit(store_const.LOADING_MUTATE)
         // Validating form fields.
         if (form.email.length === 0) throw new Error(`Oops... Email address field is required!`)
         if (!/.+@.+\..+/i.test(form.email)) throw new Error(`Oops... Email address is not valid!`)
@@ -211,6 +238,9 @@ export const store = createStore<State>({
       } catch (error: any) {
         // Show toast with error message.
         useToast().error(error.error_description || error.message)
+      } finally {
+        // Stop loading.
+        commit(store_const.LOADING_MUTATE)
       }
     },
     /**
@@ -218,8 +248,10 @@ export const store = createStore<State>({
      * @description Action for resetting password.
      * @param form object with access_token, new_password and new_password_again
      */
-    async [store_const.RENEW_PASSWORD_ACTION]({}, form) {
+    async [store_const.RENEW_PASSWORD_ACTION]({ commit }, form) {
       try {
+        // Start loading.
+        commit(store_const.LOADING_MUTATE)
         // Validating form fields.
         if (form.access_token.length === 0) throw new Error(`Oops... Access token from the magic link is not valid!`)
         if (form.new_password.length === 0) throw new Error(`Oops... New password field is required!`)
@@ -236,6 +268,9 @@ export const store = createStore<State>({
       } catch (error: any) {
         // Show toast with error message.
         useToast().error(error.error_description || error.message)
+      } finally {
+        // Stop loading.
+        commit(store_const.LOADING_MUTATE)
       }
     },
   },

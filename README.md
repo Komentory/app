@@ -1,6 +1,6 @@
-# 🌐 app.komentory.com
+# 🌐 User dashboard for [Komentory](https://komentory.com) project
 
-Frontend part with Vue.js 3 (TypeScript) and [Supabase](https://github.com/supabase) for authorized users of the Komentory project.
+A powerful frontend part with [Vue.js](https://github.com/vuejs/vue-next) 3 (TypeScript) and [Supabase](https://github.com/supabase) for authorized users of the Komentory project.
 
 ## ⚡️ Quick start
 
@@ -16,7 +16,11 @@ Run dev server:
 npm start
 ```
 
-## 👍 Useful commands
+Update all `npm` dependencies:
+
+```bash
+npm run update
+```
 
 Update TypeScript types, based on the current Supabase environment:
 
@@ -26,11 +30,11 @@ Update TypeScript types, based on the current Supabase environment:
 npm run update-types
 ```
 
-Update all `npm` dependencies:
+## 🥇 Thanks for the trouble-free service
 
-```bash
-npm run update
-```
+| Logo                                                                                                                                                                                                                       | Description                                                                                                                                                                                                                                                  |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| [![DigitalOcean Badge](https://web-platforms.sfo2.digitaloceanspaces.com/WWW/Badge%203.svg)](https://www.digitalocean.com/?refcode=b41859fa9b6e&utm_campaign=Referral_Invite&utm_medium=Referral_Program&utm_source=badge) | The Komentory project successfully runs on the DigitalOcean Apps platform, which allows you to do automatic deployment from a repository. Want to try too? [Follow this link](https://m.do.co/c/b41859fa9b6e), sign up, and get **$100** credit for 60 days. |
 
 ## ⚠️ License
 

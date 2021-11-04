@@ -26,7 +26,7 @@
           :inputType="'password'"
           :placeholder="'Enter your new secret password once again'"
           :helpText="
-            form.new_password !== form.new_password_again ? 'Passwords are not the same! Please try again.' : ''
+            form.new_password === form.new_password_again ? '' : 'Passwords are not the same! Please try again.'
           "
           :tabIndex="2"
           :isRequired="true"
@@ -38,11 +38,13 @@
       <Button
         @click="renewPassword"
         :action="'success'"
+        :isLoading="isLoading"
+        :disabled="form.new_password !== form.new_password_again || isLoading"
         :tabIndex="3"
-        :disabled="form.new_password !== form.new_password_again || form.new_password_again.length === 0"
         class="w-full"
       >
         Change my password!
+        {{ isLoading }}
       </Button>
     </div>
   </div>
@@ -50,6 +52,7 @@
 
 <script lang="ts">
 import { defineComponent, reactive } from 'vue'
+import { mapGetters } from 'vuex'
 import { useRouter } from 'vue-router'
 import { useStore } from '__/store'
 import { RENEW_PASSWORD_ACTION } from '__/store-constants'
@@ -62,13 +65,16 @@ export default defineComponent({
     Input,
     Button,
   },
+  computed: {
+    ...mapGetters(['isLoading']),
+  },
   setup: () => {
     // Define needed instances.
     const store = useStore()
     const router = useRouter()
     // Define needed variables.
-    const form = reactive({
-      access_token: getHashValueByName('access_token', router.currentRoute.value.hash),
+    const form: any = reactive({
+      access_token: getHashValueByName('access_token', router.currentRoute.value.hash), // get Supabase hash from URL
       new_password: '',
       new_password_again: '',
     })
