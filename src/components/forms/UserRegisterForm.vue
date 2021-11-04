@@ -62,7 +62,14 @@
       </SwitchGroup>
     </div>
     <div class="my-6">
-      <Button @click="register" :action="'success'" :tabIndex="5" :disabled="!servicePolicyAgreement" class="w-full">
+      <Button
+        @click="register"
+        :action="'success'"
+        :isLoading="isLoading"
+        :disabled="!servicePolicyAgreement || isLoading"
+        :tabIndex="5"
+        class="w-full"
+      >
         And now register me!
       </Button>
     </div>
@@ -97,7 +104,7 @@ export default defineComponent({
     SwitchLabel,
   },
   computed: {
-    ...mapGetters(['isUserLoggedIn']), // getter for checking if user is logged in
+    ...mapGetters(['isLoading', 'isUserLoggedIn']),
   },
   setup() {
     // Define needed instances.

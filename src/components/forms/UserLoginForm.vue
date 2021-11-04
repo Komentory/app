@@ -7,16 +7,18 @@
     <div class="my-8">
       <Button
         @click="loginWithGoogle"
-        :tabIndex="1"
         class="flex justify-center items-center space-x-2 w-full mt-6 mb-3"
+        :tabIndex="1"
+        :isLoading="isLoading"
       >
         <LogoGoogleIcon />
         <span>Continue with Google</span>
       </Button>
       <Button
         @click="loginWithFacebook"
-        :tabIndex="2"
         class="flex justify-center items-center space-x-2 w-full mt-3 mb-6"
+        :isLoading="isLoading"
+        :tabIndex="2"
       >
         <LogoFacebookIcon />
         <span>Continue with Facebook</span>
@@ -58,7 +60,16 @@
       </p>
     </div>
     <div class="mt-3 mb-6">
-      <Button @click="loginWithEmail" :action="'success'" :tabIndex="5" class="w-full">Let me in!</Button>
+      <Button
+        @click="loginWithEmail"
+        :action="'success'"
+        :isLoading="isLoading"
+        :disabled="isLoading"
+        :tabIndex="5"
+        class="w-full"
+      >
+        Let me in!
+      </Button>
     </div>
     <div class="mt-8 text-center text-sm">
       No account? <router-link :to="{ name: 'register' }">Register</router-link> a new one!
@@ -90,7 +101,7 @@ export default defineComponent({
     LogoFacebookIcon,
   },
   computed: {
-    ...mapGetters(['isUserLoggedIn']), // getter for checking if user is logged in
+    ...mapGetters(['isLoading', 'isUserLoggedIn']),
   },
   setup: () => {
     // Define needed instances.

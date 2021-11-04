@@ -42,6 +42,12 @@ export const RENEW_PASSWORD_ACTION = 'RENEW_PASSWORD_ACTION'
 
 /**
  * @name USER_MUTATE
- * @description Provide mutation for a user object.
+ * @description Provide mutation for the user object.
  */
 export const USER_MUTATE = 'USER_MUTATE'
+
+/**
+ * @name LOADING_MUTATE
+ * @description Provide mutation for loading state.
+ */
+export const LOADING_MUTATE = 'LOADING_MUTATE'

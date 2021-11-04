@@ -20,11 +20,13 @@
       <Button
         @click="resetPassword"
         :action="'warning'"
+        :isLoading="isLoading"
+        :disabled="form.email.length === 0 || isLoading"
         :tabIndex="2"
-        :disabled="form.email.length === 0"
         class="w-full"
-        >Send magic link to me!</Button
       >
+        Send magic link to me!
+      </Button>
     </div>
     <div class="mt-8 text-center text-sm">
       <p>Already have an account? <router-link :to="{ name: 'login' }">Login</router-link> now!</p>
@@ -35,7 +37,7 @@
     <h1 class="mb-8 text-center">Oh, wait...</h1>
     <div class="text-center"><strong>Friend,</strong> you're already logged in!</div>
     <div class="mt-8">
-      <Button @click="() => $router.replace({ name: 'account' })" :tabIndex="1" class="w-full"> Go to account </Button>
+      <Button @click="() => $router.replace({ name: 'account' })" :tabIndex="1" class="w-full">Go to account</Button>
     </div>
   </div>
 </template>
@@ -54,7 +56,7 @@ export default defineComponent({
     Button,
   },
   computed: {
-    ...mapGetters(['isUserLoggedIn']), // getter for checking if user is logged in
+    ...mapGetters(['isLoading', 'isUserLoggedIn']),
   },
   setup: () => {
     // Define needed instances.
