@@ -1,6 +1,6 @@
 # 🌐 User dashboard for [Komentory](https://komentory.com) project
 
-Frontend part with Vue.js 3 (TypeScript) and [Supabase](https://github.com/supabase) for authorized users of the Komentory project.
+A powerful frontend part with [Vue.js](https://github.com/vuejs/vue-next) 3 (TypeScript) and [Supabase](https://github.com/supabase) for authorized users of the Komentory project.
 
 ## ⚡️ Quick start
 
