@@ -28,7 +28,7 @@ import { useRouter } from 'vue-router'
 import { Button } from '__/components'
 
 export default defineComponent({
-  name: 'UserLoginSuccess',
+  name: 'UserSuccessfulLogin',
   components: {
     Button,
   },
