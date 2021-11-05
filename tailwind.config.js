@@ -7,6 +7,9 @@ module.exports = {
       sans: ['Inter var', ...require('tailwindcss/defaultConfig').theme.fontFamily.sans],
     },
     extend: {
+      height: {
+        76: '19rem',
+      },
       screens: {
         '2xl': '1440px',
         '3xl': '1536px',

@@ -1,27 +1,26 @@
 <template>
-  <div class="grid grid-cols-1 sm:grid-cols-12 xl:grid-cols-24">
-    <div class="mt-20 sm:mt-24 sm:col-span-12 xl:col-start-7">
-      <div class="py-4 px-2 sm:py-6 sm:px-6">
+  <main>
+    <div class="grid-wrapper">
+      <div class="grid-container">
         <h1 class="line-clamp-1 text-4xl">Projects</h1>
-      </div>
-      <div class="py-4 px-2 sm:py-6 sm:px-6">
-        <div class="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
-          <div v-if="isLoading">
-            <ProjectLoader />
-          </div>
-          <div v-else>
-            <div v-for="(project, index) in projects" :key="project.id" class="block-item shadow-md">
-              <div class="gradient-color-yellow-purple-red h-6 rounded-t-3xl"></div>
-              <div class="pt-6 pb-4 px-6">
-                <AuthorCard
-                  :id="project.author.id"
-                  :full_name="project.author.full_name"
-                  :avatar_url="project.author.avatar_url"
-                  :pictureSize="'h-8 w-8'"
-                  class="text-sm"
-                />
-                <h3 class="my-2 line-clamp-2">{{ project.attributes.title }}</h3>
-                <p class="line-clamp-3">{{ project.attributes.description }}</p>
+        <div class="h-10"></div>
+        <div class="grid-inner-items gap-4">
+          <ProjectLoader v-if="isLoading" class="block-item shadow-md" />
+          <div v-else v-for="(project, index) in projects" :key="project.id" class="block-item shadow-md">
+            <div class="gradient-color-yellow-purple-red h-6 rounded-t-3xl"></div>
+            <div class="pt-6 pb-4 px-6">
+              <div class="flex flex-col sm:h-76">
+                <div class="flex-grow">
+                  <AuthorCard
+                    :id="project.author.id"
+                    :full_name="project.author.full_name"
+                    :avatar_url="project.author.avatar_url"
+                    :pictureSize="'h-8 w-8'"
+                    class="text-sm"
+                  />
+                  <h3 class="my-2 line-clamp-2">{{ project.attributes.title }}</h3>
+                  <p class="line-clamp-3">{{ project.attributes.description }}</p>
+                </div>
                 <Button
                   @click="() => $router.push({ name: 'project-details', params: { id: project.id } })"
                   :action="'info'"
@@ -39,7 +38,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </main>
 </template>
 
 <script lang="ts">

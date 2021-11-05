@@ -1,5 +1,5 @@
 <template>
-  <div class="animate-pulse block-item shadow-md">
+  <div class="animate-pulse">
     <div class="gradient-color-yellow-purple-red h-6 rounded-t-3xl"></div>
     <div class="py-4 px-6">
       <div class="flex items-center space-x-2">

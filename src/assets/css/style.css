@@ -51,17 +51,27 @@
   .grid-wrapper {
     @apply grid grid-cols-1;
     @apply sm:grid-cols-6 xl:grid-cols-12 2xl:grid-cols-16 3xl:grid-cols-20 4xl:grid-cols-24;
-  }
-  /* Grid container */
-  .grid-wrapper > .grid-container {
-    @apply sm:col-span-6 xl:col-span-12 2xl:col-span-16 3xl:col-span-20 4xl:col-span-24;
     @apply max-w-7xl 2xl:mx-auto;
-    @apply text-sm;
+  }
+  /* Main */
+  main {
+    @apply p-4;
+    @apply mt-24 mb-10;
+    @apply sm:mt-28;
+    @apply w-full;
+  }
+  main .grid-container {
+    @apply sm:col-span-6 xl:col-span-12 2xl:col-span-16 3xl:col-span-20 4xl:col-span-24;
+  }
+  main .grid-container .grid-inner-items {
+    @apply grid grid-cols-1;
+    @apply sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4;
   }
   /* Footer */
   footer {
     @apply w-full;
     @apply text-secondary-dark bg-secondary-darker dark:bg-secondary-darkest;
+    @apply text-sm;
   }
   footer a {
     @apply text-secondary-dark;
