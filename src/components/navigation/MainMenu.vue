@@ -3,12 +3,12 @@
     as="nav"
     v-slot="{ open }"
     :class="[
-      'z-50 drop-shadow-md fixed w-full',
+      'fixed w-full z-50 drop-shadow-md',
       'bg-main',
       'dark:bg-secondary-darker dark:border-b-2 dark:border-secondary-dark',
     ]"
   >
-    <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto py-1 px-2 sm:px-4">
       <div class="relative flex items-center justify-between h-16 sm:h-20">
         <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
           <DisclosureButton
@@ -106,7 +106,7 @@
                   <router-link
                     :to="{ name: item.to }"
                     :class="[
-                      $router.currentRoute.value.name === item.to ? [''] : ['text-secondary'],
+                      $router.currentRoute.value.name === item.to ? '' : 'text-secondary',
                       'block px-4 py-2 text-sm',
                     ]"
                   >
@@ -170,14 +170,12 @@ export default defineComponent({
       { name: 'Projects', to: 'projects' },
       { name: 'Get started', to: 'get-started' },
     ]
-
     // Define user menu items.
     const userMenu = [
       { name: 'My profile', to: 'account' },
       { name: 'Settings', to: 'projects' },
       { name: 'Sign out', to: 'logout' },
     ]
-
     // Return menu items.
     return { mainMenu, userMenu }
   },
