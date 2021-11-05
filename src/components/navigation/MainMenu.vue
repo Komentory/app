@@ -8,7 +8,7 @@
       'dark:bg-secondary-darker dark:border-b-2 dark:border-secondary-dark',
     ]"
   >
-    <div class="max-w-7xl mx-auto py-1 px-2">
+    <div class="max-w-7xl mx-auto py-1 px-2 sm:px-4">
       <div class="relative flex items-center justify-between h-16 sm:h-20">
         <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
           <DisclosureButton
