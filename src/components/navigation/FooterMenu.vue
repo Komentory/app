@@ -1,49 +1,42 @@
 <template>
-  <div
-    class="
-      grid grid-cols-1
-      sm:grid-cols-12
-      xl:grid-cols-24
-      w-full
-      text-secondary-dark
-      bg-secondary-darker
-      dark:bg-secondary-darkest
-    "
-  >
-    <div class="sm:col-span-12 xl:col-start-7">
-      <div class="py-4 px-2 sm:px-6 lg:px-8">
-        <div class="grid items-center text-center text-sm grid-cols-1 sm:grid-cols-12 gap-4">
-          <div class="sm:col-span-2 sm:text-left">&copy; 2020-{{ new Date().getFullYear() }} Komentory.</div>
-          <div class="sm:col-span-5 sm:text-left">
-            Project originally developed by
-            <a href="https://1wa.co" target="_blank" class="text-secondary-dark">True web artisans</a> team. Special
-            thanks to all our
-            <a href="https://github.com/Komentory" target="_blank" class="text-secondary-dark">GitHub</a> contributors,
-            <a href="https://supabase.io" target="_blank" class="text-secondary-dark">Supabase</a> service and
-            <a href="https://shostak.dev" target="_blank" class="text-secondary-dark">Vic Shóstak</a> for bringing this
-            wonderful open source project to life.
-          </div>
-          <div class="sm:col-span-4">
-            <div class="inline-flex items-center space-x-2">
-              <router-link
-                v-for="item in footerMenu"
-                :key="item.to"
-                :to="{ name: item.to }"
-                class="text-secondary-dark"
-              >
-                {{ item.name }}
+  <footer>
+    <div class="grid-wrapper">
+      <div class="grid-container">
+        <div class="p-4">
+          <div class="grid-wrapper items-center text-center gap-4">
+            <div class="copyright">
+              <strong>&copy; 2020-{{ new Date().getFullYear() }} Komentory.</strong> Project originally developed by
+              <a href="https://1wa.co" target="_blank" class="text-secondary-dark">True web artisans</a> team. Special
+              thanks to all our
+              <a href="https://github.com/Komentory" target="_blank" class="text-secondary-dark">GitHub</a>
+              contributors, <a href="https://supabase.io" target="_blank" class="text-secondary-dark">Supabase</a> and
+              <a href="https://m.do.co/c/b41859fa9b6e" target="_blank" class="text-secondary-dark">DigitalOcean</a>
+              trouble-free services, and
+              <a href="https://shostak.dev" target="_blank" class="text-secondary-dark">Vic Shóstak</a> for bringing
+              this wonderful open source project to life.
+            </div>
+            <div class="footer-menu">
+              <div class="inline-flex items-center space-x-2">
+                <router-link
+                  v-for="item in footerMenu"
+                  :key="item.to"
+                  :to="{ name: item.to }"
+                  class="text-secondary-dark"
+                >
+                  {{ item.name }}
+                </router-link>
+              </div>
+            </div>
+            <div class="footer-logo">
+              <router-link :to="{ name: 'index' }" class="no-border">
+                <LogoKomentoryIcon :iconStyle="'color-main bg-transparent'" :width="36" :height="36" />
               </router-link>
             </div>
-          </div>
-          <div class="mx-auto">
-            <router-link :to="{ name: 'index' }" class="no-border">
-              <LogoKomentoryIcon :iconStyle="'color-main bg-transparent'" :width="36" :height="36" />
-            </router-link>
           </div>
         </div>
       </div>
     </div>
-  </div>
+  </footer>
 </template>
 
 <script lang="ts">

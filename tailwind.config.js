@@ -8,7 +8,8 @@ module.exports = {
     },
     extend: {
       screens: {
-        '3xl': '1440px',
+        '2xl': '1440px',
+        '3xl': '1536px',
         '4xl': '1680px',
         '5xl': '1920px',
       },
@@ -18,6 +19,7 @@ module.exports = {
         24: 'repeat(24, minmax(0, 1fr))',
       },
       gridColumn: {
+        'span-13': 'span 13 / span 13',
         'span-16': 'span 16 / span 16',
         'span-20': 'span 20 / span 20',
         'span-24': 'span 24 / span 24',
