@@ -31,10 +31,10 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('__/views/UserLogin.vue'),
   },
   {
-    path: '/login/success',
-    name: 'login-success',
+    path: '/successful-login',
+    name: 'successful-login',
     meta: { requiresAuth: false },
-    component: () => import('__/views/UserLoginSuccess.vue'),
+    component: () => import('__/views/UserSuccessfulLogin.vue'),
   },
   {
     path: '/logout',

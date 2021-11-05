@@ -12,7 +12,7 @@
           <div v-else>
             <div v-for="(project, index) in projects" :key="project.id" class="block-item shadow-md">
               <div class="gradient-color-yellow-purple-red h-6 rounded-t-3xl"></div>
-              <div class="py-6 px-6">
+              <div class="pt-6 pb-4 px-6">
                 <AuthorCard
                   :id="project.author.id"
                   :full_name="project.author.full_name"
@@ -61,15 +61,15 @@ export default defineComponent({
     // Define needed instances.
     const toast = useToast()
     // Define needed variables.
-    const projects: any = ref<definitions['projects_with_author_and_tasks_count']>()
+    const projects: any = ref<definitions['projects_author_tasks_count']>()
     const isLoading = ref(true)
     // Define async function for getting all active projects (status = 0).
     const getAllProjects = async () => {
       try {
         // Send request to Supabase.
         const { data, error } = await supabase
-          .from<definitions['projects_with_author_and_tasks_count']>('projects_with_author_and_tasks_count')
-          .select()
+          .from<definitions['projects_author_tasks_count']>('projects_author_tasks_count')
+          .select('*')
           .eq('status', 1)
         // Throw error, if something went wrong.
         if (error) throw error

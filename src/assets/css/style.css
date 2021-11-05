@@ -46,6 +46,39 @@
   }
 }
 
+@layer components {
+  /* Grid wrapper */
+  .grid-wrapper {
+    @apply grid grid-cols-1;
+    @apply sm:grid-cols-6 xl:grid-cols-12 2xl:grid-cols-16 3xl:grid-cols-20 4xl:grid-cols-24;
+  }
+  /* Grid container */
+  .grid-wrapper > .grid-container {
+    @apply sm:col-span-6 xl:col-span-12 2xl:col-span-16 3xl:col-span-20 4xl:col-span-24;
+    @apply max-w-7xl 2xl:mx-auto;
+    @apply text-sm;
+  }
+  /* Footer */
+  footer {
+    @apply w-full;
+    @apply text-secondary-dark bg-secondary-darker dark:bg-secondary-darkest;
+  }
+  footer .copyright,
+  footer .acknowledgements {
+    @apply lg:text-left;
+  }
+  footer .copyright {
+    @apply sm:col-span-full lg:col-span-3 xl:col-span-7 2xl:col-span-9 3xl:col-span-11 4xl:col-span-13;
+  }
+  footer .footer-menu {
+    @apply sm:col-span-full lg:col-span-2 xl:col-span-4 2xl:col-span-6 3xl:col-span-8 4xl:col-span-10;
+  }
+  footer .footer-logo {
+    @apply sm:col-span-full lg:col-span-1;
+    @apply mx-auto;
+  }
+}
+
 @layer utilities {
   /* Gradient colors */
   .gradient-color-yellow-main-blue {

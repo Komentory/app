@@ -79,15 +79,15 @@ export default defineComponent({
     // Define needed instances.
     const toast = useToast()
     // Define needed variables.
-    const project: any = ref<definitions['project_with_author_and_tasks']>()
+    const project: any = ref<definitions['projects_author_tasks_list_count']>()
     const isLoading = ref(true)
     // Define async function for getting one project by ID.
     const getProject = async () => {
       try {
         // Send request to Supabase.
         const { data, error } = await supabase
-          .from<definitions['project_with_author_and_tasks']>('project_with_author_and_tasks')
-          .select()
+          .from<definitions['projects_author_tasks_list_count']>('projects_author_tasks_list_count')
+          .select('*')
           .eq('id', props.id)
           .single()
         // Throw error, if something went wrong.
