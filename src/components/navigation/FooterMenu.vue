@@ -2,7 +2,7 @@
   <footer>
     <div class="grid-wrapper">
       <div class="grid-container">
-        <div class="p-4">
+        <div class="py-4 px-2">
           <div class="grid-wrapper items-center text-center gap-4">
             <div class="copyright">
               <strong>&copy; 2020-{{ new Date().getFullYear() }} Komentory.</strong> Project originally developed by
