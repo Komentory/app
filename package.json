@@ -1,6 +1,6 @@
 {
   "name": "app-komentory",
-  "version": "0.6.0",
+  "version": "0.6.2",
   "scripts": {
     "start": "vite --port 3000 --host",
     "build": "npm run check:typescript && vite build",
