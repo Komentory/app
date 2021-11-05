@@ -63,6 +63,9 @@
     @apply w-full;
     @apply text-secondary-dark bg-secondary-darker dark:bg-secondary-darkest;
   }
+  footer a {
+    @apply text-secondary-dark;
+  }
   footer .copyright,
   footer .acknowledgements {
     @apply lg:text-left;
