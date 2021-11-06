@@ -7,7 +7,7 @@
         <div class="grid-inner-items gap-4">
           <SuspenseWithError>
             <template #default><ProjectsList /></template>
-            <template #fallback><ProjectLoader /></template>
+            <template #fallback><ProjectsListLoader /></template>
             <template #error><h1>I failed to load</h1></template>
           </SuspenseWithError>
         </div>
@@ -24,8 +24,8 @@ export default defineComponent({
   name: 'Projects',
   components: {
     SuspenseWithError,
-    ProjectLoader: defineAsyncComponent(() => import('__/components/loaders/ProjectLoader.vue')),
     ProjectsList: defineAsyncComponent(() => import('__/controllers/ProjectsList.vue')),
+    ProjectsListLoader: defineAsyncComponent(() => import('__/components/loaders/ProjectsListLoader.vue')),
   },
 })
 </script>
