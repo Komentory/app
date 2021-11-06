@@ -1,6 +1,6 @@
 {
   "name": "app-komentory",
-  "version": "0.6.2",
+  "version": "0.7.0",
   "scripts": {
     "start": "vite --port 3000 --host",
     "build": "npm run check:typescript && vite build",
@@ -11,7 +11,6 @@
   },
   "dependencies": {
     "@supabase/supabase-js": "^1.25.2",
-    "axios": "^0.24.0",
     "vue": "^3.2.20",
     "vue-router": "^4.0.12",
     "vue-toastification": "^2.0.0-rc.5",
@@ -25,7 +24,7 @@
     "@tailwindcss/line-clamp": "^0.2.2",
     "@tailwindcss/typography": "^0.4.1",
     "@types/node": "^16.11.6",
-    "@types/tailwindcss": "^2.2.3",
+    "@types/tailwindcss": "^2.2.4",
     "@vitejs/plugin-vue": "^1.9.4",
     "@vue/compiler-sfc": "^3.2.21",
     "autoprefixer": "^10.4.0",
