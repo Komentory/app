@@ -60,6 +60,11 @@
     @apply sm:mt-28;
     @apply w-full;
   }
+  main h2,
+  main h3,
+  main h4 {
+    @apply dark:text-secondary-dark;
+  }
   main .grid-container {
     @apply sm:col-span-6 xl:col-span-12 2xl:col-span-16 3xl:col-span-20 4xl:col-span-24;
   }
@@ -94,13 +99,9 @@
 
 @layer utilities {
   /* Gradient colors */
-  .gradient-color-yellow-main-blue {
+  .gradient-color-purple-pink-red {
     @apply bg-gradient-to-r;
-    @apply from-yellow via-main to-blue;
-  }
-  .gradient-color-yellow-purple-red {
-    @apply bg-gradient-to-r;
-    @apply from-yellow via-purple-500 to-red;
+    @apply from-purple-400 via-pink-500 to-red;
   }
   /* Make text with gradient color */
   .gradient-text {
