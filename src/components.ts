@@ -1,12 +1,7 @@
 /**
- * Exporting Content Loaders components.
- */
-export { default as ContentLoader } from '__/components/loaders/ContentLoader.vue'
-export { default as ProjectLoader } from '__/components/loaders/ProjectLoader.vue'
-
-/**
  * Exporting Helpers components.
  */
+export { default as SuspenseWithError } from '__/components/helpers/SuspenseWithError.vue'
 export { default as AuthorCard } from '__/components/helpers/AuthorCard.vue'
 export { default as DateFormatted } from '__/components/helpers/DateFormatted.vue'
 export { default as CurrentUserAvatar } from '__/components/helpers/CurrentUserAvatar.vue'
