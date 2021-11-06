@@ -1,8 +1,6 @@
 <template>
   <h1>Answers for task ID: {{ id }}</h1>
-  <div v-if="isLoading">
-    <ContentLoader />
-  </div>
+  <div v-if="isLoading"></div>
   <div v-else>
     <p>
       <router-link :to="{ name: 'task-details', params: { id } }">Back</router-link>
@@ -28,7 +26,7 @@
 <script lang="ts">
 import { defineComponent, onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { ContentLoader, DateFormatted, AuthorCard } from '__/components'
+import { DateFormatted, AuthorCard } from '__/components'
 
 export default defineComponent({
   name: 'Answers',
@@ -36,7 +34,6 @@ export default defineComponent({
     id: { type: String, required: true },
   },
   components: {
-    ContentLoader,
     DateFormatted,
     AuthorCard,
   },

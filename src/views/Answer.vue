@@ -1,8 +1,6 @@
 <template>
   <h1>Answer ID: {{ id }}</h1>
-  <div v-if="isLoading">
-    <ContentLoader />
-  </div>
+  <div v-if="isLoading"></div>
   <div v-else>
     <p>
       <router-link :to="{ name: 'task-answers', params: { id: answer.task_id } }">Back</router-link>
@@ -15,15 +13,11 @@
 <script lang="ts">
 import { defineComponent, onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { ContentLoader } from '__/components'
 
 export default defineComponent({
   name: 'Answer',
   props: {
     id: { type: String, required: true },
-  },
-  components: {
-    ContentLoader,
   },
   setup: (props) => {
     // Define needed instances.
