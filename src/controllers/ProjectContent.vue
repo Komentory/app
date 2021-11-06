@@ -14,7 +14,7 @@
           </li>
         </ul>
       </div>
-      <div class="mt-2">
+      <div v-if="project.attributes.tags" class="mt-2">
         <ul class="inline-flex items-center space-x-2">
           <li><HashtagIcon class="h-5 w-5" /></li>
           <li>Tags:</li>
