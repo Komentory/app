@@ -112,7 +112,7 @@ const routes: Array<RouteRecordRaw> = [
     path: '/:pathMatch(.*)*',
     name: 'not-found',
     meta: { requiresAuth: false },
-    component: () => import('__/views/NotFound.vue'),
+    component: () => import('__/views/errors/NotFound.vue'),
   },
 ]
 
