@@ -53,6 +53,13 @@
     @apply sm:grid-cols-6 xl:grid-cols-12 2xl:grid-cols-16 3xl:grid-cols-20 4xl:grid-cols-24;
     @apply max-w-7xl 2xl:mx-auto;
   }
+  /* Style for block elements, like project card */
+  .block-item {
+    @apply rounded-3xl;
+    @apply bg-white;
+    @apply dark:bg-secondary-darker;
+    @apply dark:border dark:border-secondary-dark;
+  }
   /* Main */
   main {
     @apply p-4;
@@ -107,13 +114,6 @@
   .gradient-text {
     @apply bg-clip-text;
     @apply text-transparent;
-  }
-  /* Style for block elements, like project card */
-  .block-item {
-    @apply rounded-3xl;
-    @apply bg-white;
-    @apply dark:bg-secondary-darker;
-    @apply dark:border dark:border-secondary-dark;
   }
   /* Clear border for links */
   .no-border {
