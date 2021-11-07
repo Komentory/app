@@ -46,7 +46,7 @@ export default defineComponent({
     // Switch by input type.
     switch (props.inputType) {
       case 'email':
-        regExpPattern.value = /.+@.+\..+/i // email address, like mail@example.com
+        regExpPattern.value = /.{1,}@.{1,}\..{2,}/i // email address, like mail@example.com
         break
       case 'password':
         regExpPattern.value = /.{6,}/i // password, min 6 characters

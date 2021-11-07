@@ -12,7 +12,7 @@
             class="text-sm"
           />
           <h2 class="my-2 line-clamp-2 dark:text-secondary">{{ project.attributes.title }}</h2>
-          <p class="line-clamp-3">{{ project.attributes.description }}</p>
+          <div class="line-clamp-3">{{ stripHTMLTagsFromString(project.attributes.description) }}</div>
         </div>
         <Button
           @click="() => $router.push({ name: 'project-details', params: { id: project.id } })"
@@ -33,9 +33,11 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
 import { useToast } from 'vue-toastification'
+import { ExclamationIcon as Warning } from '@heroicons/vue/outline'
 import { DateFormatted, AuthorCard, Button } from '__/components'
 import { supabase } from '__/supabase'
 import { definitions } from '__/types/supabase'
+import { stripHTMLTagsFromString } from '__/helpers'
 
 export default defineComponent({
   name: 'ProjectList',
@@ -49,7 +51,7 @@ export default defineComponent({
     const toast = useToast()
     // Define needed variables.
     const projects: any = ref<definitions['projects_author_tasks_count']>()
-    // Define async function for getting all active projects (status = 0).
+    // Define async function for getting all active projects (status = 1).
     try {
       // Send request to Supabase.
       const { data, error } = await supabase
@@ -62,10 +64,10 @@ export default defineComponent({
       projects.value = data
     } catch (error: any) {
       // Show error message in toast.
-      toast.error(error.error_description || error.message)
+      toast.error(error.error_description || error.message, { icon: Warning })
     }
     // Return instances and variables.
-    return { projects }
+    return { projects, stripHTMLTagsFromString }
   },
 })
 </script>

@@ -15,3 +15,17 @@ export function getHashValueByName(name: string, url: string) {
   // Returning the hash value.
   return decodeURIComponent(results[2].replace(/\+/g, ' '))
 }
+
+// Import markdown-it library.
+// See: https://github.com/markdown-it/markdown-it
+import MarkdownIt from 'markdown-it'
+// Define function for converting Markdown to HTML.
+// See all available rules here: https://github.com/markdown-it/markdown-it/blob/master/lib/parser_block.js
+export function convertMarkdownToHTML(markdown: string, rules: string[] = ['heading', 'link', 'image']) {
+  return new MarkdownIt().disable(rules).render(markdown)
+}
+
+// Define function for strip HTML tags from string.
+export function stripHTMLTagsFromString(string: string) {
+  return string.replace(/<\/?[^>]+(>|$)/g, '')
+}

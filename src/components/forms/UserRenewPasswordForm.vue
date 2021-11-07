@@ -1,7 +1,7 @@
 <template>
   <div class="w-72 sm:w-96">
     <div class="mb-8 text-center">
-      <h1 class="mb-1 gradient-text gradient-color-purple-pink-red">Hooray! It worked</h1>
+      <h1 class="mb-1 gradient-text gradient-color-purple-pink-red">Hooray. It worked!</h1>
       <h2 class="text-base">Update your password now</h2>
     </div>
     <div class="my-6">

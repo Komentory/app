@@ -11,7 +11,7 @@
         </ul>
         <SuspenseWithError>
           <template #default><ProjectContent :projectId="id" /></template>
-          <template #fallback><ContentLoader /></template>
+          <template #fallback><ProjectContentLoader /></template>
           <template #error><h1>I failed to load</h1></template>
         </SuspenseWithError>
       </div>
@@ -32,8 +32,8 @@ export default defineComponent({
   components: {
     HomeIcon,
     SuspenseWithError,
-    ContentLoader: defineAsyncComponent(() => import('__/components/loaders/ContentLoader.vue')),
     ProjectContent: defineAsyncComponent(() => import('__/controllers/ProjectContent.vue')),
+    ProjectContentLoader: defineAsyncComponent(() => import('__/components/loaders/ProjectContentLoader.vue')),
   },
 })
 </script>

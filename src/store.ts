@@ -1,6 +1,14 @@
 import { InjectionKey } from 'vue'
 import { createStore, useStore as baseUseStore, Store } from 'vuex'
 import { useToast } from 'vue-toastification'
+import {
+  MailIcon as Mail,
+  ShieldExclamationIcon as Shield,
+  LockOpenIcon as SuccessLogin,
+  ExclamationIcon as Warning,
+  InformationCircleIcon as Info,
+  CheckIcon as Okay,
+} from '@heroicons/vue/outline'
 import { User as ISupabaseUser } from '@supabase/supabase-js'
 import { supabase } from '__/supabase'
 import { router } from '__/router'
@@ -103,13 +111,13 @@ export const store = createStore<State>({
         // If something went wrong, throw error.
         if (error) throw error
         // Show toast with success message.
-        useToast().success(`You've been registered successfully! Redirect to your account.`)
+        useToast().success(`You've been registered successfully! Redirect to your account.`, { icon: Okay })
         // Go to LOGIN_ACTION for logging in.
         await dispatch(store_const.LOGIN_WITH_EMAIL_ACTION, form)
       } catch (error: any) {
         // Show toast with error message.
-        if (error.status === 400) useToast().error(`Oops... User with this email address already exists!`)
-        else useToast().error(error.error_description || error.message)
+        if (error.status === 400) useToast().error(`Oops... User is already exists! Try to login?`, { icon: Shield })
+        else useToast().error(error.error_description || error.message, { icon: Warning })
       }
     },
     /**
@@ -132,7 +140,7 @@ export const store = createStore<State>({
         // If something went wrong, throw error.
         if (error) throw error
         // Show toast with success message.
-        useToast().success(`Hey, friend. Welcome to your account!`)
+        useToast().success(`Hey, friend. Welcome to your account!`, { icon: SuccessLogin })
         // Mutate store's state with the user object.
         commit(store_const.USER_MUTATE, user)
         // Catch saved route in ?redirect= query.
@@ -143,8 +151,8 @@ export const store = createStore<State>({
           : await router.push({ name: 'account' }) // or just push account page
       } catch (error: any) {
         // Show toast with error message.
-        if (error.status === 400) useToast().error(`Oops... Wrong email address or password!`)
-        else useToast().error(error.error_description || error.message)
+        if (error.status === 400) useToast().error(`Oops... Wrong email address or password!`, { icon: Shield })
+        else useToast().error(error.error_description || error.message, { icon: Warning })
       } finally {
         // Stop loading.
         commit(store_const.LOADING_MUTATE)
@@ -166,8 +174,8 @@ export const store = createStore<State>({
         if (error) throw error
       } catch (error: any) {
         // Show toast with error message.
-        if (error.status === 400) useToast().error(`Oops... Something went wrong with the Google authentication!`)
-        else useToast().error(error.error_description || error.message)
+        if (error.status === 400) useToast().error(`Oops... Something wrong with the Google auth!`, { icon: Shield })
+        else useToast().error(error.error_description || error.message, { icon: Warning })
       }
     },
     /**
@@ -186,8 +194,8 @@ export const store = createStore<State>({
         if (error) throw error
       } catch (error: any) {
         // Show toast with error message.
-        if (error.status === 400) useToast().error(`Oops... Something went wrong with the Facebook authentication!`)
-        else useToast().error(error.error_description || error.message)
+        if (error.status === 400) useToast().error(`Oops... Something wrong with the Facebook auth!`, { icon: Shield })
+        else useToast().error(error.error_description || error.message, { icon: Warning })
       }
     },
     /**
@@ -203,12 +211,12 @@ export const store = createStore<State>({
         // If something went wrong, throw error.
         if (error) throw error
         // Show toast with info message.
-        useToast().info(`You're out. We'll be waiting for you again!`)
+        useToast().info(`You're out. We'll be waiting for you again!`, { icon: Info })
         // Push login page.
         await router.push({ name: 'login' })
       } catch (error: any) {
         // Show toast with error message.
-        useToast().error(error.error_description || error.message)
+        useToast().error(error.error_description || error.message, { icon: Warning })
       } finally {
         // In any case, we mutate store's state with the empty user object.
         commit(store_const.USER_MUTATE, <State['user']>{})
@@ -234,10 +242,10 @@ export const store = createStore<State>({
         // If something went wrong, throw error.
         if (error) throw error
         // Show toast with info message.
-        useToast().warning(`Please check your email. The magic link was successfully sent!`)
+        useToast().warning(`Please check your email. The magic link was successfully sent!`, { icon: Mail })
       } catch (error: any) {
         // Show toast with error message.
-        useToast().error(error.error_description || error.message)
+        useToast().error(error.error_description || error.message, { icon: Warning })
       } finally {
         // Stop loading.
         commit(store_const.LOADING_MUTATE)
@@ -262,12 +270,12 @@ export const store = createStore<State>({
         // If something went wrong, throw error.
         if (error) throw error
         // Show toast with info message.
-        useToast().success(`Okay. Your password was updated successfully!`)
+        useToast().success(`Okay. Your password was updated successfully!`, { icon: Okay })
         // Push login page.
         await router.push({ name: 'account' })
       } catch (error: any) {
         // Show toast with error message.
-        useToast().error(error.error_description || error.message)
+        useToast().error(error.error_description || error.message, { icon: Warning })
       } finally {
         // Stop loading.
         commit(store_const.LOADING_MUTATE)
