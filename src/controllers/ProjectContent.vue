@@ -42,24 +42,22 @@
   <div class="grid-inner-items gap-4">
     <div v-if="project.tasks.length === 0">No tasks for this project... yet.</div>
     <div v-else v-for="(task, index) in project.tasks" :key="task.id" class="block-item shadow-md">
-      <div class="p-6">
-        <div class="flex flex-col sm:h-68">
+      <div class="pt-6 pb-4 px-6">
+        <div class="flex flex-col sm:h-64">
           <div class="flex-grow">
             <h3 class="line-clamp-2 dark:text-secondary">
               <span class="dark:text-secondary-dark">#{{ index + 1 }}</span> {{ task.title }}
             </h3>
-            <p class="my-4 line-clamp-3">{{ stripHTMLTagsFromString(task.description) }}</p>
+            <p class="line-clamp-3">{{ stripHTMLTagsFromString(task.description) }}</p>
           </div>
-          <div class="mb-4">
-            <Button
-              @click="() => $router.push({ name: 'task-details', params: { id: task.id } })"
-              :disabled="task.status !== 1"
-              :tabIndex="index + 1"
-              class="mb-1 w-full"
-            >
-              View task details
-            </Button>
-          </div>
+          <Button
+            @click="() => $router.push({ name: 'task-details', params: { id: task.id } })"
+            :disabled="task.status !== 1"
+            :tabIndex="index + 1"
+            class="my-4 w-full"
+          >
+            View task details
+          </Button>
           <div class="text-center text-secondary-dark">
             Steps count: {{ task.steps_count }}, ~{{ task.steps_count * 1.5 }} min
           </div>
