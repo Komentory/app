@@ -3,7 +3,7 @@
     <div class="grid items-center justify-center h-screen sm:w-screen">
       <div class="py-6 px-6 sm:py-8 sm:px-8 xl:py-10 mx-auto block-item shadow-lg">
         <div class="w-72">
-          <h1 class="mb-8 text-center gradient-text gradient-color-yellow-purple-red">Yep! It worked</h1>
+          <h1 class="mb-8 text-center gradient-text gradient-color-purple-pink-red">Yep. It worked!</h1>
           <div class="text-center">
             <p><strong>Friend</strong>, you're successfully logged in to the Komentory project!</p>
             <p class="text-sm">

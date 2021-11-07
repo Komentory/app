@@ -24,3 +24,8 @@ import MarkdownIt from 'markdown-it'
 export function convertMarkdownToHTML(markdown: string, rules: string[] = ['heading', 'link', 'image']) {
   return new MarkdownIt().disable(rules).render(markdown)
 }
+
+// Define function for strip HTML tags from string.
+export function stripHTMLTagsFromString(string: string) {
+  return string.replace(/<\/?[^>]+(>|$)/g, '')
+}

@@ -12,7 +12,7 @@
             class="text-sm"
           />
           <h2 class="my-2 line-clamp-2 dark:text-secondary">{{ project.attributes.title }}</h2>
-          <p class="line-clamp-3">{{ project.attributes.description }}</p>
+          <div class="line-clamp-3">{{ stripHTMLTagsFromString(project.attributes.description) }}</div>
         </div>
         <Button
           @click="() => $router.push({ name: 'project-details', params: { id: project.id } })"
@@ -36,6 +36,7 @@ import { useToast } from 'vue-toastification'
 import { DateFormatted, AuthorCard, Button } from '__/components'
 import { supabase } from '__/supabase'
 import { definitions } from '__/types/supabase'
+import { stripHTMLTagsFromString } from '__/helpers'
 
 export default defineComponent({
   name: 'ProjectList',
@@ -65,7 +66,7 @@ export default defineComponent({
       toast.error(error.error_description || error.message)
     }
     // Return instances and variables.
-    return { projects }
+    return { projects, stripHTMLTagsFromString }
   },
 })
 </script>

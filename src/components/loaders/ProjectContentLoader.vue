@@ -1,6 +1,6 @@
 <template>
   <div class="animate-pulse">
-    <div class="mt-8 h-6 gradient-color-purple-pink-red rounded-full w-4/5"></div>
+    <div class="mt-8 h-4 gradient-color-purple-pink-red rounded-full w-4/5"></div>
     <div class="py-6">
       <div class="my-4">
         <div class="h-3 my-3 gradient-color-purple-pink-red rounded-full w-4/6"></div>
