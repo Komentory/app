@@ -11,6 +11,9 @@
         <div class="my-4">
           <div class="h-3 my-2 gradient-color-purple-pink-red rounded-full w-full"></div>
           <div class="h-3 my-2 gradient-color-purple-pink-red rounded-full w-5/6"></div>
+          <div class="h-3 my-2 gradient-color-purple-pink-red rounded-full w-4/6"></div>
+          <div class="h-3 my-2 gradient-color-purple-pink-red rounded-full w-5/6"></div>
+          <div class="h-3 my-2 gradient-color-purple-pink-red rounded-full w-3/6"></div>
           <div class="h-3 my-2 gradient-color-purple-pink-red rounded-full w-2/6"></div>
         </div>
       </div>
