@@ -33,6 +33,7 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
 import { useToast } from 'vue-toastification'
+import { ExclamationIcon as Warning } from '@heroicons/vue/outline'
 import { DateFormatted, AuthorCard, Button } from '__/components'
 import { supabase } from '__/supabase'
 import { definitions } from '__/types/supabase'
@@ -50,7 +51,7 @@ export default defineComponent({
     const toast = useToast()
     // Define needed variables.
     const projects: any = ref<definitions['projects_author_tasks_count']>()
-    // Define async function for getting all active projects (status = 0).
+    // Define async function for getting all active projects (status = 1).
     try {
       // Send request to Supabase.
       const { data, error } = await supabase
@@ -63,7 +64,7 @@ export default defineComponent({
       projects.value = data
     } catch (error: any) {
       // Show error message in toast.
-      toast.error(error.error_description || error.message)
+      toast.error(error.error_description || error.message, { icon: Warning })
     }
     // Return instances and variables.
     return { projects, stripHTMLTagsFromString }
