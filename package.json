@@ -1,6 +1,6 @@
 {
   "name": "app-komentory",
-  "version": "0.7.1",
+  "version": "0.7.2",
   "scripts": {
     "start": "vite --port 3000 --host",
     "build": "npm run check:typescript && vite build",
@@ -10,7 +10,7 @@
     "serve": "npm run build && vite preview --port 3000 --host"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^1.25.2",
+    "@supabase/supabase-js": "^1.27.0",
     "markdown-it": "^12.2.0",
     "vue": "^3.2.20",
     "vue-router": "^4.0.12",
@@ -18,7 +18,7 @@
     "vuex": "^4.0.2"
   },
   "devDependencies": {
-    "@headlessui/vue": "^1.4.1",
+    "@headlessui/vue": "^1.4.2",
     "@heroicons/vue": "^1.0.5",
     "@tailwindcss/aspect-ratio": "^0.3.0",
     "@tailwindcss/forms": "^0.3.4",
