@@ -120,6 +120,105 @@ export interface paths {
       };
     };
   };
+  "/profiles": {
+    get: {
+      parameters: {
+        query: {
+          id?: parameters["rowFilter.profiles.id"];
+          updated_at?: parameters["rowFilter.profiles.updated_at"];
+          username?: parameters["rowFilter.profiles.username"];
+          avatar_url?: parameters["rowFilter.profiles.avatar_url"];
+          website_url?: parameters["rowFilter.profiles.website_url"];
+          /** Filtering Columns */
+          select?: parameters["select"];
+          /** Ordering */
+          order?: parameters["order"];
+          /** Limiting and Pagination */
+          offset?: parameters["offset"];
+          /** Limiting and Pagination */
+          limit?: parameters["limit"];
+        };
+        header: {
+          /** Limiting and Pagination */
+          Range?: parameters["range"];
+          /** Limiting and Pagination */
+          "Range-Unit"?: parameters["rangeUnit"];
+          /** Preference */
+          Prefer?: parameters["preferCount"];
+        };
+      };
+      responses: {
+        /** OK */
+        200: {
+          schema: definitions["profiles"][];
+        };
+        /** Partial Content */
+        206: unknown;
+      };
+    };
+    post: {
+      parameters: {
+        body: {
+          /** profiles */
+          profiles?: definitions["profiles"];
+        };
+        query: {
+          /** Filtering Columns */
+          select?: parameters["select"];
+        };
+        header: {
+          /** Preference */
+          Prefer?: parameters["preferReturn"];
+        };
+      };
+      responses: {
+        /** Created */
+        201: unknown;
+      };
+    };
+    delete: {
+      parameters: {
+        query: {
+          id?: parameters["rowFilter.profiles.id"];
+          updated_at?: parameters["rowFilter.profiles.updated_at"];
+          username?: parameters["rowFilter.profiles.username"];
+          avatar_url?: parameters["rowFilter.profiles.avatar_url"];
+          website_url?: parameters["rowFilter.profiles.website_url"];
+        };
+        header: {
+          /** Preference */
+          Prefer?: parameters["preferReturn"];
+        };
+      };
+      responses: {
+        /** No Content */
+        204: never;
+      };
+    };
+    patch: {
+      parameters: {
+        query: {
+          id?: parameters["rowFilter.profiles.id"];
+          updated_at?: parameters["rowFilter.profiles.updated_at"];
+          username?: parameters["rowFilter.profiles.username"];
+          avatar_url?: parameters["rowFilter.profiles.avatar_url"];
+          website_url?: parameters["rowFilter.profiles.website_url"];
+        };
+        body: {
+          /** profiles */
+          profiles?: definitions["profiles"];
+        };
+        header: {
+          /** Preference */
+          Prefer?: parameters["preferReturn"];
+        };
+      };
+      responses: {
+        /** No Content */
+        204: never;
+      };
+    };
+  };
   "/projects": {
     get: {
       parameters: {
@@ -448,181 +547,311 @@ export interface paths {
 }
 
 export interface definitions {
-  /** Answers for the project's tasks. */
+  /** @description Answers for the project's tasks. */
   answers: {
     /**
-     * Note:
+     * Format: uuid
+     * @description Note:
      * This is a Primary Key.<pk/>
+     * @default extensions.uuid_generate_v4()
      */
     id: string;
+    /**
+     * Format: timestamp with time zone
+     * @default now()
+     */
     created_at: string;
+    /** Format: timestamp with time zone */
     updated_at?: string;
+    /** Format: uuid */
     user_id: string;
     /**
-     * Note:
+     * Format: uuid
+     * @description Note:
      * This is a Foreign Key to `projects.id`.<fk table='projects' column='id'/>
      */
     project_id: string;
     /**
-     * Note:
+     * Format: uuid
+     * @description Note:
      * This is a Foreign Key to `tasks.id`.<fk table='tasks' column='id'/>
      */
     task_id: string;
+    /** Format: smallint */
     status: number;
+    /** Format: jsonb */
     attributes?: string;
   };
-  /** Projects created by users. */
-  projects: {
+  /** @description Profile model for users. */
+  profiles: {
     /**
-     * Note:
+     * Format: uuid
+     * @description Note:
      * This is a Primary Key.<pk/>
      */
     id: string;
-    created_at?: string;
+    /** Format: timestamp with time zone */
     updated_at?: string;
+    /** Format: character varying */
+    username?: string;
+    /** Format: text */
+    avatar_url?: string;
+    /** Format: character varying */
+    website_url?: string;
+  };
+  /** @description Projects created by users. */
+  projects: {
+    /**
+     * Format: uuid
+     * @description Note:
+     * This is a Primary Key.<pk/>
+     * @default extensions.uuid_generate_v4()
+     */
+    id: string;
+    /**
+     * Format: timestamp with time zone
+     * @default now()
+     */
+    created_at?: string;
+    /** Format: timestamp with time zone */
+    updated_at?: string;
+    /** Format: uuid */
     user_id: string;
+    /** Format: smallint */
     status: number;
+    /** Format: jsonb */
     attributes?: string;
   };
   projects_author_tasks_count: {
     /**
-     * Note:
+     * Format: uuid
+     * @description Note:
      * This is a Primary Key.<pk/>
      */
     id?: string;
+    /** Format: timestamp with time zone */
     created_at?: string;
+    /** Format: smallint */
     status?: number;
+    /** Format: jsonb */
     attributes?: string;
+    /** Format: jsonb */
     author?: string;
+    /** Format: bigint */
     tasks_count?: number;
   };
   projects_author_tasks_list_count: {
     /**
-     * Note:
+     * Format: uuid
+     * @description Note:
      * This is a Primary Key.<pk/>
      */
     id?: string;
+    /** Format: timestamp with time zone */
     created_at?: string;
+    /** Format: timestamp with time zone */
     updated_at?: string;
+    /** Format: smallint */
     status?: number;
+    /** Format: jsonb */
     attributes?: string;
+    /** Format: jsonb */
     author?: string;
+    /** Format: bigint */
     tasks_count?: number;
+    /** Format: jsonb */
     tasks?: string;
   };
-  /** Tasks for the project. */
+  /** @description Tasks for the project. */
   tasks: {
     /**
-     * Note:
+     * Format: uuid
+     * @description Note:
      * This is a Primary Key.<pk/>
+     * @default extensions.uuid_generate_v4()
      */
     id: string;
+    /**
+     * Format: timestamp with time zone
+     * @default now()
+     */
     created_at: string;
+    /** Format: timestamp with time zone */
     updated_at?: string;
+    /** Format: uuid */
     user_id: string;
     /**
-     * Note:
+     * Format: uuid
+     * @description Note:
      * This is a Foreign Key to `projects.id`.<fk table='projects' column='id'/>
      */
     project_id: string;
+    /** Format: smallint */
     status: number;
+    /** Format: jsonb */
     attributes?: string;
   };
   tasks_answers_count: {
     /**
-     * Note:
+     * Format: uuid
+     * @description Note:
      * This is a Primary Key.<pk/>
      */
     id?: string;
+    /** Format: timestamp with time zone */
     created_at?: string;
+    /** Format: timestamp with time zone */
     updated_at?: string;
+    /** Format: uuid */
     user_id?: string;
     /**
-     * Note:
+     * Format: uuid
+     * @description Note:
      * This is a Foreign Key to `projects.id`.<fk table='projects' column='id'/>
      */
     project_id?: string;
+    /** Format: smallint */
     status?: number;
+    /** Format: jsonb */
     attributes?: string;
+    /** Format: bigint */
     answers_count?: number;
   };
 }
 
 export interface parameters {
-  /** Preference */
+  /** @description Preference */
   preferParams: "params=single-object";
-  /** Preference */
+  /** @description Preference */
   preferReturn: "return=representation" | "return=minimal" | "return=none";
-  /** Preference */
+  /** @description Preference */
   preferCount: "count=none";
-  /** Filtering Columns */
+  /** @description Filtering Columns */
   select: string;
-  /** On Conflict */
+  /** @description On Conflict */
   on_conflict: string;
-  /** Ordering */
+  /** @description Ordering */
   order: string;
-  /** Limiting and Pagination */
+  /** @description Limiting and Pagination */
   range: string;
-  /** Limiting and Pagination */
+  /**
+   * @description Limiting and Pagination
+   * @default items
+   */
   rangeUnit: string;
-  /** Limiting and Pagination */
+  /** @description Limiting and Pagination */
   offset: string;
-  /** Limiting and Pagination */
+  /** @description Limiting and Pagination */
   limit: string;
-  /** answers */
+  /** @description answers */
   "body.answers": definitions["answers"];
+  /** Format: uuid */
   "rowFilter.answers.id": string;
+  /** Format: timestamp with time zone */
   "rowFilter.answers.created_at": string;
+  /** Format: timestamp with time zone */
   "rowFilter.answers.updated_at": string;
+  /** Format: uuid */
   "rowFilter.answers.user_id": string;
+  /** Format: uuid */
   "rowFilter.answers.project_id": string;
+  /** Format: uuid */
   "rowFilter.answers.task_id": string;
+  /** Format: smallint */
   "rowFilter.answers.status": string;
+  /** Format: jsonb */
   "rowFilter.answers.attributes": string;
-  /** projects */
+  /** @description profiles */
+  "body.profiles": definitions["profiles"];
+  /** Format: uuid */
+  "rowFilter.profiles.id": string;
+  /** Format: timestamp with time zone */
+  "rowFilter.profiles.updated_at": string;
+  /** Format: character varying */
+  "rowFilter.profiles.username": string;
+  /** Format: text */
+  "rowFilter.profiles.avatar_url": string;
+  /** Format: character varying */
+  "rowFilter.profiles.website_url": string;
+  /** @description projects */
   "body.projects": definitions["projects"];
+  /** Format: uuid */
   "rowFilter.projects.id": string;
+  /** Format: timestamp with time zone */
   "rowFilter.projects.created_at": string;
+  /** Format: timestamp with time zone */
   "rowFilter.projects.updated_at": string;
+  /** Format: uuid */
   "rowFilter.projects.user_id": string;
+  /** Format: smallint */
   "rowFilter.projects.status": string;
+  /** Format: jsonb */
   "rowFilter.projects.attributes": string;
-  /** projects_author_tasks_count */
+  /** @description projects_author_tasks_count */
   "body.projects_author_tasks_count": definitions["projects_author_tasks_count"];
+  /** Format: uuid */
   "rowFilter.projects_author_tasks_count.id": string;
+  /** Format: timestamp with time zone */
   "rowFilter.projects_author_tasks_count.created_at": string;
+  /** Format: smallint */
   "rowFilter.projects_author_tasks_count.status": string;
+  /** Format: jsonb */
   "rowFilter.projects_author_tasks_count.attributes": string;
+  /** Format: jsonb */
   "rowFilter.projects_author_tasks_count.author": string;
+  /** Format: bigint */
   "rowFilter.projects_author_tasks_count.tasks_count": string;
-  /** projects_author_tasks_list_count */
+  /** @description projects_author_tasks_list_count */
   "body.projects_author_tasks_list_count": definitions["projects_author_tasks_list_count"];
+  /** Format: uuid */
   "rowFilter.projects_author_tasks_list_count.id": string;
+  /** Format: timestamp with time zone */
   "rowFilter.projects_author_tasks_list_count.created_at": string;
+  /** Format: timestamp with time zone */
   "rowFilter.projects_author_tasks_list_count.updated_at": string;
+  /** Format: smallint */
   "rowFilter.projects_author_tasks_list_count.status": string;
+  /** Format: jsonb */
   "rowFilter.projects_author_tasks_list_count.attributes": string;
+  /** Format: jsonb */
   "rowFilter.projects_author_tasks_list_count.author": string;
+  /** Format: bigint */
   "rowFilter.projects_author_tasks_list_count.tasks_count": string;
+  /** Format: jsonb */
   "rowFilter.projects_author_tasks_list_count.tasks": string;
-  /** tasks */
+  /** @description tasks */
   "body.tasks": definitions["tasks"];
+  /** Format: uuid */
   "rowFilter.tasks.id": string;
+  /** Format: timestamp with time zone */
   "rowFilter.tasks.created_at": string;
+  /** Format: timestamp with time zone */
   "rowFilter.tasks.updated_at": string;
+  /** Format: uuid */
   "rowFilter.tasks.user_id": string;
+  /** Format: uuid */
   "rowFilter.tasks.project_id": string;
+  /** Format: smallint */
   "rowFilter.tasks.status": string;
+  /** Format: jsonb */
   "rowFilter.tasks.attributes": string;
-  /** tasks_answers_count */
+  /** @description tasks_answers_count */
   "body.tasks_answers_count": definitions["tasks_answers_count"];
+  /** Format: uuid */
   "rowFilter.tasks_answers_count.id": string;
+  /** Format: timestamp with time zone */
   "rowFilter.tasks_answers_count.created_at": string;
+  /** Format: timestamp with time zone */
   "rowFilter.tasks_answers_count.updated_at": string;
+  /** Format: uuid */
   "rowFilter.tasks_answers_count.user_id": string;
+  /** Format: uuid */
   "rowFilter.tasks_answers_count.project_id": string;
+  /** Format: smallint */
   "rowFilter.tasks_answers_count.status": string;
+  /** Format: jsonb */
   "rowFilter.tasks_answers_count.attributes": string;
+  /** Format: bigint */
   "rowFilter.tasks_answers_count.answers_count": string;
 }
 
